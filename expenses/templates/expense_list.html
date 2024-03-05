@@ -11,5 +11,16 @@
         {% endfor %}
     </ul>
     <a href="{% url 'add_expense' %}">Adicionar Despesa</a>
+
+    <!-- Por exemplo, no seu template 'expense_list.html': -->
+<ul>
+    {% for expense in expenses %}
+    <li>
+        {{ expense.title }} - R$ {{ expense.amount }} - {{ expense.date }}
+        <a href="{% url 'delete_expense' expense.id %}">Excluir</a>
+    </li>
+    {% endfor %}
+</ul>
+
 </body>
 </html>
