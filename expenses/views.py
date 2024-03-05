@@ -1,12 +1,12 @@
-from django.shortcuts import render, redirect
 from .models import Expense
 from .forms import ExpenseForm
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Expense
+from django.db.models import Sum
 
 def expense_list(request):
     expenses = Expense.objects.all()
-    return render(request, 'expense_list.html', {'expenses': expenses})
+    total_expenses = Expense.objects.aggregate(total=Sum('amount'))['total'] or 0  # Calcule a soma total das despesas
+    return render(request, 'expenses/expense_list.html', {'expenses': expenses, 'total_expenses': total_expenses})
 
 def add_expense(request):
     if request.method == 'POST':
