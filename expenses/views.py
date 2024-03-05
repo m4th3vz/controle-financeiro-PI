@@ -7,15 +7,19 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def expense_list(request):
-    expenses = Expense.objects.all()
-    total_expenses = Expense.objects.aggregate(total=Sum('amount'))['total'] or 0
+    expenses = Expense.objects.filter(user=request.user)  # Filtrando as despesas pelo usuário atual
+    total_expenses = expenses.aggregate(total=Sum('amount'))['total'] or 0
     return render(request, 'expenses/expense_list.html', {'expenses': expenses, 'total_expenses': total_expenses})
 
+
+@login_required
 def add_expense(request):
     if request.method == 'POST':
         form = ExpenseForm(request.POST)
         if form.is_valid():
-            form.save()
+            expense = form.save(commit=False)
+            expense.user = request.user  # Associando a despesa ao usuário atual
+            expense.save()
             return redirect('expense_list')
     else:
         form = ExpenseForm()
