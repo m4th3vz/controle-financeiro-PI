@@ -1,6 +1,8 @@
-# Controle de gastos PI
+# Controle Financeiro PI
 
 Univesp - Projeto Integrador em Computação I
+
+* Software de finanças focado para pessoas de baixa renda
 
 Alunos:
 - Ednaldo Pereira Costa, RA:2230626
