@@ -1,4 +1,5 @@
-# Controle Financeiro PI
+![Bolso controlado sem fundo 4](https://github.com/m4th3vz/bolso-controlado-PI/assets/109554163/03f21d9c-10fb-4052-84de-26c9bad71770)
+# Bolso controlado PI
 
 Univesp - Projeto Integrador em Computação I
 
