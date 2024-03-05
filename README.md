@@ -4,12 +4,13 @@ Univesp - Projeto Integrador em Computação I
 
 * Software de finanças focado para pessoas de baixa renda
 
-Alunos:
-- Ednaldo Pereira Costa, RA:2230626
-- Elvis Carlos Ciccheto, RA:2214798
-- Giovanna Silvestre Silva, RA:2203048
-- Jobson Aparecido dos Santos, RA:2202123
-- Leonardo Marques Souza, RA:2212756
-- Luciano Monteiro Caprara, RA:2230054
-- Matheus de Oliveira Santos, RA:2211017
-- Tatiane Costa Bordinhão, RA:2202013
+Nome do Aluno(a) | Registro Acadêmico
+---|---
+Ednaldo Pereira Costa | 2230626
+Elvis Carlos Ciccheto | 2214798
+Giovanna Silvestre Silva | 2203048
+Jobson Aparecido dos Santos | 2202123
+Leonardo Marques Souza | 2212756
+Luciano Monteiro Caprara | 2230054
+Matheus de Oliveira Santos | 2211017
+Tatiane Costa Bordinhão | 2202013
