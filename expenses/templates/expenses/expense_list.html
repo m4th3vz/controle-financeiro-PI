@@ -13,18 +13,24 @@
     <p>Total de Despesas: R$ {{ total_expenses }}</p>
     <a href="{% url 'add_expense' %}">Adicionar Despesa</a>
 
-<ul>
-    {% for expense in expenses %}
-    <li>
-        {{ expense.title }} - R$ {{ expense.amount }} - {{ expense.date }}
-        <a href="{% url 'delete_expense' expense.id %}">Excluir</a>
-    </li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for expense in expenses %}
+            <li>
+                {{ expense.title }} - R$ {{ expense.amount }} - {{ expense.date }}
+                <a href="{% url 'delete_expense' expense.id %}">Excluir</a>
+            </li>
+        {% endfor %}
+    </ul>
+
     <form action="{% url 'confirm_delete_expenses' %}" method="post">
         {% csrf_token %}
         <input type="submit" value="Excluir Todas as Despesas">
     </form>
+    
     <a href="{% url 'calculator' %}">Calculadora</a>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Logout</a>
+    {% endif %}
 </body>
 </html>

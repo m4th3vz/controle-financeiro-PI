@@ -1,11 +1,14 @@
 from .models import Expense
-from .forms import ExpenseForm
+from .forms import ExpenseForm, UserRegistrationForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Sum
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def expense_list(request):
     expenses = Expense.objects.all()
-    total_expenses = Expense.objects.aggregate(total=Sum('amount'))['total'] or 0  # Calcule a soma total das despesas
+    total_expenses = Expense.objects.aggregate(total=Sum('amount'))['total'] or 0
     return render(request, 'expenses/expense_list.html', {'expenses': expenses, 'total_expenses': total_expenses})
 
 def add_expense(request):
@@ -47,3 +50,16 @@ def calculator(request):
                 result = f"Error: {str(e)}"
             return render(request, 'calculator.html', {'result': result})
     return render(request, 'calculator.html')
+
+class CustomLoginView(LoginView):
+    template_name = 'login.html'
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'register.html', {'form': form})
