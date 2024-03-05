@@ -22,6 +22,10 @@
     </li>
     {% endfor %}
 </ul>
+    <form action="{% url 'confirm_delete_expenses' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Excluir Todas as Despesas">
+    </form>
 
 </body>
 </html>

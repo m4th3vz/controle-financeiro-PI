@@ -24,3 +24,13 @@ def delete_expense(request, expense_id):
         expense.delete()
         return redirect('expense_list')
     return render(request, 'expenses/delete_expense.html', {'expense': expense})
+
+def delete_all_expenses(request):
+    if request.method == 'POST':
+        Expense.objects.all().delete()
+        return redirect('expense_list')
+    return redirect('confirm_delete_expenses')
+
+def confirm_delete_expenses(request):
+    return render(request, 'expenses/confirm_delete.html')
+

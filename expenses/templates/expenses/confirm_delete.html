@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Exclusão</title>
+</head>
+<body>
+    <h1>Tem certeza que deseja excluir todas as despesas?</h1>
+    <form action="{% url 'delete_all_expenses' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Confirmar">
+    </form>
+</body>
+</html>
