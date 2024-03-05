@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        .button {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora</h1>
+    <form id="calculator-form" action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="expression" id="expression" placeholder="Enter expression" readonly>
+        <br>
+        <button type="button" class="button" onclick="addToExpression('7')">7</button>
+        <button type="button" class="button" onclick="addToExpression('8')">8</button>
+        <button type="button" class="button" onclick="addToExpression('9')">9</button>
+        <button type="button" class="button" onclick="addToExpression('+')">+</button>
+        <br>
+        <button type="button" class="button" onclick="addToExpression('4')">4</button>
+        <button type="button" class="button" onclick="addToExpression('5')">5</button>
+        <button type="button" class="button" onclick="addToExpression('6')">6</button>
+        <button type="button" class="button" onclick="addToExpression('-')">-</button>
+        <br>
+        <button type="button" class="button" onclick="addToExpression('1')">1</button>
+        <button type="button" class="button" onclick="addToExpression('2')">2</button>
+        <button type="button" class="button" onclick="addToExpression('3')">3</button>
+        <button type="button" class="button" onclick="addToExpression('*')">*</button>
+        <br>
+        <button type="button" class="button" onclick="addToExpression('0')">0</button>
+        <button type="button" class="button" onclick="addToExpression('.')">.</button>
+        <button type="button" class="button" onclick="clearExpression()">C</button>
+        <button type="button" class="button" onclick="addToExpression('/')">/</button>
+        <br>
+        <button type="submit" class="button" style="width: 100%;">Calcular</button>
+    </form>
+    {% if result %}
+    <p>Resultado: {{ result }}</p>
+    {% endif %}
+
+    <a href="{% url 'expense_list' %}">Voltar para Lista de Despesas</a>
+
+    <script>
+        function addToExpression(value) {
+            document.getElementById("expression").value += value;
+        }
+
+        function clearExpression() {
+            document.getElementById("expression").value = '';
+        }
+    </script>
+</body>
+</html>

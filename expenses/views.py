@@ -34,3 +34,16 @@ def delete_all_expenses(request):
 def confirm_delete_expenses(request):
     return render(request, 'expenses/confirm_delete.html')
 
+def calculator(request):
+    return render(request, 'calculator.html')
+
+def calculator(request):
+    if request.method == 'POST':
+        expression = request.POST.get('expression')
+        if expression:
+            try:
+                result = eval(expression)
+            except Exception as e:
+                result = f"Error: {str(e)}"
+            return render(request, 'calculator.html', {'result': result})
+    return render(request, 'calculator.html')
