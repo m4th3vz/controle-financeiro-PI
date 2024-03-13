@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Despesa</title>
 </head>
 <body>
     <h1>Adicionar Despesa</h1>
+    <!-- Formulário de adição de despesa -->
     <form method="post">
+        <!-- CSRF Token para proteção contra Cross-Site Request Forgery -->
         {% csrf_token %}
+        <!-- Renderiza o formulário de adição de despesa -->
         {{ form.as_p }}
+        <!-- Botão de submissão do formulário -->
         <button type="submit">Adicionar</button>
     </form>
 </body>

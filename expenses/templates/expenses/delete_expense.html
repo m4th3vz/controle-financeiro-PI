@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmar Exclusão</title>
 </head>
 <body>
     <h1>Confirmar Exclusão</h1>
+    <!-- Mensagem de confirmação com o título da despesa a ser excluída -->
     <p>Você tem certeza que deseja excluir a despesa "{{ expense.title }}"?</p>
+    <!-- Formulário para confirmar a exclusão da despesa -->
     <form method="post">
+        <!-- CSRF Token para proteção contra Cross-Site Request Forgery -->
         {% csrf_token %}
+        <!-- Botão de submissão do formulário -->
         <button type="submit">Confirmar</button>
     </form>
 </body>

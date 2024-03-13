@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
+    <!-- Estilos CSS para os botões da calculadora -->
     <style>
         .button {
             width: 50px;
@@ -15,10 +16,14 @@
 </head>
 <body>
     <h1>Calculadora</h1>
+    <!-- Formulário da calculadora -->
     <form id="calculator-form" action="" method="post">
+        <!-- CSRF Token para proteção contra Cross-Site Request Forgery -->
         {% csrf_token %}
+        <!-- Campo de texto para a expressão -->
         <input type="text" name="expression" id="expression" placeholder="Enter expression" readonly>
         <br>
+        <!-- Botões numéricos e operadores -->
         <button type="button" class="button" onclick="addToExpression('7')">7</button>
         <button type="button" class="button" onclick="addToExpression('8')">8</button>
         <button type="button" class="button" onclick="addToExpression('9')">9</button>
@@ -39,14 +44,16 @@
         <button type="button" class="button" onclick="clearExpression()">C</button>
         <button type="button" class="button" onclick="addToExpression('/')">/</button>
         <br>
+        <!-- Botão para calcular -->
         <button type="submit" class="button" style="width: 100%;">Calcular</button>
     </form>
+    <!-- Exibe o resultado, se houver -->
     {% if result %}
     <p>Resultado: {{ result }}</p>
     {% endif %}
-
+    <!-- Link para voltar para a lista de despesas -->
     <a href="{% url 'expense_list' %}">Voltar para Lista de Despesas</a>
-
+    <!-- Scripts JavaScript para adicionar valores à expressão e limpar a expressão -->
     <script>
         function addToExpression(value) {
             document.getElementById("expression").value += value;

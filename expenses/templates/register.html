@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
 </head>
 <body>
     <h2>Registro</h2>
+    <!-- Formulário de registro -->
     <form method="post">
+        <!-- CSRF Token para proteção contra Cross-Site Request Forgery -->
         {% csrf_token %}
+        <!-- Renderiza o formulário de registro -->
         {{ form.as_p }}
+        <!-- Botão de submissão do formulário -->
         <button type="submit">Registrar</button>
     </form>
 </body>

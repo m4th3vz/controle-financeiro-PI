@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +7,16 @@
 </head>
 <body>
     <h1>Login</h1>
+    <!-- Formulário de login -->
     <form method="post">
+        <!-- CSRF Token para proteção contra Cross-Site Request Forgery -->
         {% csrf_token %}
+        <!-- Renderiza o formulário de login -->
         {{ form.as_p }}
+        <!-- Botão de submissão do formulário -->
         <button type="submit">Login</button>
     </form>
+    <!-- Link para a página de registro -->
     <p>Não tem uma conta? <a href="{% url 'register' %}">Registre aqui</a></p>
 </body>
 </html>
