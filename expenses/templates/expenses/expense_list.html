@@ -8,6 +8,14 @@
 <body>
     <h1>Lista de Despesas</h1>
 
+    <!-- Formulário para atualizar a renda mensal -->
+    <form action="{% url 'expense_list' %}" method="post">
+        {% csrf_token %}
+        <label for="salary">Renda Mensal:</label>
+        <input type="text" id="salary" name="salary" placeholder="Insira sua renda mensal">
+        <input type="submit" value="Atualizar">
+    </form>
+
     <!-- Exibe a renda mensal -->
     {% if salary %}
     <p>Renda Mensal: R$ {{ salary }}</p>
@@ -41,14 +49,6 @@
     <a href="{% url 'calculator' %}">Calculadora</a>
     <!-- Link para fazer logout -->
     <a href="{% url 'logout' %}">Logout</a>
-
-    <!-- Formulário para atualizar a renda mensal -->
-    <form action="{% url 'expense_list' %}" method="post">
-        {% csrf_token %}
-        <label for="salary">Renda Mensal:</label>
-        <input type="text" id="salary" name="salary" placeholder="Insira sua renda mensal">
-        <input type="submit" value="Atualizar">
-    </form>
     
 </body>
 </html>

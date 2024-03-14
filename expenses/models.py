@@ -24,7 +24,7 @@ class Expense(models.Model):
 class UserProfile(models.Model):
     # Relacionamento um para um com o modelo de usuário padrão do Django
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # Campo para armazenar o salário do usuário
+    # Campo para armazenar a renda mensal do usuário
     salary = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
