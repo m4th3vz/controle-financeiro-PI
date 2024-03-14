@@ -7,6 +7,20 @@
 </head>
 <body>
     <h1>Lista de Despesas</h1>
+
+    <!-- Exibe a renda mensal -->
+    {% if salary %}
+    <p>Renda Mensal: R$ {{ salary }}</p>
+    {% endif %}
+
+    <!-- Exibe o total das despesas -->
+    <p>Total de Despesas: R$ {{ total_expenses }}</p>
+
+    <!-- Exibe a diferença -->
+    {% if difference is not None %}
+    <p>Renda mensal após pagamento das despesas: R$ {{ difference }}</p>
+    {% endif %}
+
     <ul>
         <!-- Loop sobre todas as despesas -->
         {% for expense in expenses %}
@@ -14,8 +28,6 @@
             <li>{{ expense.title }} - R$ {{ expense.amount }} - {{ expense.date }} <a href="{% url 'delete_expense' expense.id %}">Excluir</a></li>
         {% endfor %}
     </ul>
-    <!-- Exibe o total das despesas -->
-    <p>Total de Despesas: R$ {{ total_expenses }}</p>
 
     <!-- Formulário para excluir todas as despesas -->
     <form action="{% url 'confirm_delete_expenses' %}" method="post">
@@ -29,5 +41,14 @@
     <a href="{% url 'calculator' %}">Calculadora</a>
     <!-- Link para fazer logout -->
     <a href="{% url 'logout' %}">Logout</a>
+
+    <!-- Formulário para atualizar a renda mensal -->
+    <form action="{% url 'expense_list' %}" method="post">
+        {% csrf_token %}
+        <label for="salary">Renda Mensal:</label>
+        <input type="text" id="salary" name="salary" placeholder="Insira sua renda mensal">
+        <input type="submit" value="Atualizar">
+    </form>
+    
 </body>
 </html>

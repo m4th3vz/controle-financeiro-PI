@@ -4,16 +4,41 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Sum
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
+from .models import Expense, UserProfile
+from django.core.exceptions import ValidationError
+from decimal import Decimal
 
 # Lista de despesas
 @login_required
 def expense_list(request):
-    # Obtém todas as despesas do usuário logado
+    if request.method == 'POST':
+        salary = request.POST.get('salary')
+
+        # Verificar se o campo de renda mensal está vazio
+        if not salary:
+            # Se estiver vazio, definir a renda mensal como 0
+            salary = 0
+        else:
+            try:
+                # Tentar converter o valor da renda mensal para um número decimal
+                salary = Decimal(salary)
+            except ValueError:
+                # Se não for possível converter para decimal, levantar uma exceção de validação
+                raise ValidationError('O valor da renda mensal deve ser um número decimal.')
+
+        # Salvar a renda mensal associado ao usuário logado
+        user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+        user_profile.salary = salary
+        user_profile.save()
+
     expenses = Expense.objects.filter(user=request.user)
-    # Calcula o total das despesas
     total_expenses = expenses.aggregate(total=Sum('amount'))['total'] or 0
-    # Renderiza o template com as despesas e o total
-    return render(request, 'expenses/expense_list.html', {'expenses': expenses, 'total_expenses': total_expenses})
+    salary = UserProfile.objects.get(user=request.user).salary if UserProfile.objects.filter(user=request.user).exists() else None
+    
+    # Calcula a diferença entre a renda mensal e o total das despesas
+    difference = salary - total_expenses if salary is not None else None
+
+    return render(request, 'expenses/expense_list.html', {'expenses': expenses, 'total_expenses': total_expenses, 'salary': salary, 'difference': difference})
 
 # Adicionar despesa
 @login_required
