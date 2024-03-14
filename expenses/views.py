@@ -33,6 +33,7 @@ def expense_list(request):
 
     expenses = Expense.objects.filter(user=request.user)
     total_expenses = expenses.aggregate(total=Sum('amount'))['total'] or 0
+    total_expenses = total_expenses.quantize(Decimal('0.01'))
     salary = UserProfile.objects.get(user=request.user).salary if UserProfile.objects.filter(user=request.user).exists() else None
     
     # Calcula a diferença entre a renda mensal e o total das despesas
