@@ -4,17 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
+    <!-- Adicionando estilos CSS Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <!-- Adicionando estilos personalizados -->
+    <style>
+        /* Adicionando a cor de fundo roxa */
+        body {
+            background-color: #7E57C2;
+        }
+        
+        /* Adicionando margem superior ao container */
+        .container {
+            margin-top: 50px; /* ou o valor desejado */
+        }
+
+        .btn-warning {
+            background-color: #ffff00;
+        }
+
+    </style>
 </head>
 <body>
-    <h2>Registro</h2>
-    <!-- Formulário de registro -->
-    <form method="post">
-        <!-- CSRF Token para proteção contra Cross-Site Request Forgery -->
-        {% csrf_token %}
-        <!-- Renderiza o formulário de registro -->
-        {{ form.as_p }}
-        <!-- Botão de submissão do formulário -->
-        <button type="submit">Registrar</button>
-    </form>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <!-- Aqui pode ser um logotipo, se desejar -->
+                        </div>
+                        <h1 class="text-center"><strong>Crie sua conta!</strong></h1>
+                        <!-- Formulário de registro -->
+                        <form method="post">
+                            <!-- CSRF Token para proteção contra Cross-Site Request Forgery -->
+                            {% csrf_token %}
+                            <!-- Renderiza o formulário de registro -->
+                            {{ form.as_p }}
+                            <!-- Botão de submissão do formulário -->
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <button type="submit" class="btn btn-warning btn-block">Cadastrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
