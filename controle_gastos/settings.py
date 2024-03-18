@@ -120,6 +120,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+# O comando 'python manage.py collectstatic' no Django é usado para reunir todos os arquivos estáticos de uma aplicação em um diretório específico 'staticfiles' para facilitar o gerenciamento e a distribuição em um ambiente de produção.
+
 STATIC_URL = "/assets/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")

@@ -1,6 +1,7 @@
 from .models import Expense, UserProfile
 from .forms import ExpenseForm, UserRegistrationForm
 from decimal import Decimal, InvalidOperation
+from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Sum
 from django.contrib.auth.views import LoginView
@@ -54,6 +55,7 @@ def add_expense(request):
     return render(request, 'add_expense.html', {'form': form})
 
 # Excluir despesa
+@login_required
 def delete_expense(request, expense_id):
     expense = get_object_or_404(Expense, id=expense_id)
     if request.method == 'POST':
@@ -62,6 +64,7 @@ def delete_expense(request, expense_id):
     return render(request, 'expenses/delete_expense.html', {'expense': expense})
 
 # Excluir todas as despesas
+@login_required
 def delete_all_expenses(request):
     if request.method == 'POST':
         Expense.objects.all().delete()
@@ -69,10 +72,12 @@ def delete_all_expenses(request):
     return redirect('confirm_delete_expenses')
 
 # Confirmar exclusão de todas as despesas
+@login_required
 def confirm_delete_expenses(request):
     return render(request, 'expenses/confirm_delete.html')
 
 # Página da calculadora
+@login_required
 def calculator(request):
     if request.method == 'POST':
         expression = request.POST.get('expression')
@@ -89,6 +94,9 @@ def calculator(request):
 class CustomLoginView(LoginView):
     template_name = 'login.html'
 
+    def get_success_url(self):
+        return reverse_lazy('welcome')
+
 # Página de registro de usuário
 def register(request):
     if request.method == 'POST':
@@ -99,3 +107,8 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'register.html', {'form': form})
+
+# Página de boas-vindas
+@login_required
+def welcome(request):
+    return render(request, 'welcome.html')
