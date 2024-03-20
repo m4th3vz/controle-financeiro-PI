@@ -15,7 +15,7 @@ class ExpenseForm(forms.ModelForm):
     class Meta:
         model = Expense
         # Define os campos do modelo Expense que serão exibidos no formulário
-        fields = ['title', 'amount', 'date']
+        fields = ['title', 'amount', 'date', 'payment_method', 'observation']
 
 # Formulário para registro de usuário
 class UserRegistrationForm(UserCreationForm):

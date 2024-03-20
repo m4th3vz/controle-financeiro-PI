@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -43,6 +45,9 @@
                             <!-- Botão de submissão do formulário -->
                             <div style="display: flex; flex-direction: column; align-items: center;">
                                 <button type="submit" class="btn btn-warning btn-block">Cadastrar</button>
+                                <br>
+                                <img width="150px" src="{% static 'img/bolso-controlado.png'%}" alt="logo">
+                                <p style="color: #3E92CC;">Bolso Controlado</p>
                             </div>
                         </form>
                     </div>
