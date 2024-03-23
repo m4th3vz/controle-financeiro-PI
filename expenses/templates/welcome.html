@@ -37,38 +37,27 @@ color:var(--letras-nav-bar-azul);
 #menu-link-color{
     color: var(--letras-nav-bar-preto);
 }
+
 #banner{
     background-color: var(--fundo-banner);  
     padding: 5rem;
     padding-bottom: 5rem;
     text-align: center;
 }
+
 #cor-letra-banner{
     color: var(--letras-banner)
-}
-
-#centralizar{
-    text-align: center;
 }
 
 .divisor-horizontal {
   border-top: 1px solid #000;
   width: 100%;
 }
-    
-    section #comece-aqui {
-      margin-top: 20px;
-      padding-top: 50px;
-  padding-bottom: 50px;
-    }
 
-    #comece-aqui h2 {
-  font-size: 24px;
-  color: #333;
-}
-
+/* Texto de Orçamentos e Investimentos */
 #comece-aqui p {
-  font-size: 16px;
+  font-size: 18px;
+  margin-left:-10%;
   color: #666;
 }
     
@@ -206,9 +195,8 @@ color:var(--letras-nav-bar-azul);
 <div class="divisor-horizontal">
 </div>
 
-
 <section id="comece-aqui" style="display: flex; justify-content: space-between;">
-  <h2 style="padding: 0 250px; font-size: 55px;"><strong>Dicas Financeiras</strong></h2>
+  <h2 style="margin-top: 350px; padding: 0 230px; font-size: 55px;"><strong>Dicas financeiras</strong></h2>
 
   
 <div>
@@ -217,28 +205,29 @@ color:var(--letras-nav-bar-azul);
   <div class="card-content">
   </div>
   </div>
-  <h3><center>Orçamentos</center></h3>
-    <p>Acompanhe seus ganhos e gastos</p>  
+  <h3 style="margin-left:5%;">Orçamentos</h3>
+    <p style="margin-left: -2px;">Acompanhe seus ganhos</p>
+    <p style="margin-top: -15px; margin-left: 60px;">e gastos</p>
 </div>
      
-
  <div>
    <div class="circular-card">
- <center> <img src="{% static 'img/grafico.png'%}" alt="Imagem do card" class="card-img-top" style=""></center>
+ <center><img src="{% static 'img/grafico.png'%}" alt="Imagem do card" class="card-img-top"></center>
   <div class="card-content">
   </div>
     
 </div>
-<h3><center>Investimentos</center></h3>
-    <p>Maximize os retornos com investimentos inteligentes</p>
+<h3 style="margin-left:2%;">Investimentos</h3>
+    <p style="margin-left: -60px;">Maximize os retornos com investimentos</p>
+    <p style="margin-top: -15px; margin-left: 50px;">inteligentes</p>
  </div>
-      
-    
+       
 <style>
 .circular-card {
   width: 200px;
   height: 200px;
-  margin-top:250px;
+  margin-top: 250px;
+  margin-right: 300px;
   border-radius: 50%;
   background-color: #f7f7f7;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -274,9 +263,7 @@ color:var(--letras-nav-bar-azul);
 
 </style>
 
-
 </section>
-
   
     <!--fim da área com imágens clicáveis-->
 
@@ -297,8 +284,7 @@ color:var(--letras-nav-bar-azul);
       
       <p style="padding: 0 450px; margin-bottom: 20px; font-size: 22px; color: black;">
       Estamos entusiasmados em embarcar nesta jornada com você e estamos aqui para ajudar a colocar seu bolso sob controle, para que você possa alcançar seus objetivos financeiros com confiança e tranquilidade.</p>
-    
-    
+      
 <!--fim do sobre-->
 
 <!--Início do rodapé-->
