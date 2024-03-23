@@ -25,10 +25,6 @@
             padding: 30px;
         }
 
-        .btn-warning {
-            background-color: #ffff00;
-        }
-
         h1 {
             font-family: Poppins, sans-serif;
             font-size: 40px;
@@ -77,6 +73,12 @@
                                 <label for="password">Senha:</label>
                                 <input type="password" id="password" name="password" class="form-control" placeholder="Digite sua senha">
                             </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="showPasswordCheckbox" onclick="togglePasswordVisibility()">
+                                    <label class="form-check-label" for="showPasswordCheckbox">Mostrar Senha</label>
+                                </div>
+                            </div>
                             <div style="display: flex; flex-direction: column; align-items: center;">
                                 <button type="submit" class="btn btn-warning btn-block">Login</button>
                         </form>
@@ -89,5 +91,16 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    </script>
 </body>
 </html>

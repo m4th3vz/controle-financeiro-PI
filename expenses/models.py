@@ -5,12 +5,18 @@ PAYMENT_CHOICES = (
     ('Dinheiro', 'Dinheiro'),
     ('Crédito', 'Crédito'),
     ('Débito', 'Débito'),
+    ('Pix', 'Pix'),
+    ('Boleto', 'Boleto'),
+    ('Voucher', 'Voucher'),
+    ('Crediário', 'Crediário'),
+    ('Transferência', 'Transferência'),
+    ('Cartão de loja', 'Cartão de loja'),
 )
 
 # Modelo para representar uma despesa
 class Expense(models.Model):
     # Título da despesa
-    title = models.CharField(max_length=100, verbose_name='Título')
+    title = models.CharField(max_length=30, verbose_name='Título')
     # Valor da despesa
     amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Valor')
     # Data da despesa

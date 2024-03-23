@@ -10,7 +10,20 @@ class DateInput(forms.DateInput):
 # Formulário para despesa
 class ExpenseForm(forms.ModelForm):
     # Sobrescreve o widget para o campo de data
-    date = forms.DateField(widget=DateInput(format='%d-%m-%Y'))
+    date = forms.DateField(label='Data',widget=DateInput(format='%d-%m-%Y'))
+    observation = forms.CharField(
+        label='Informações adicionais sobre este gasto:',
+        max_length=60,
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control mx-auto',
+                'style': 'background-color: var(--cor-input); max-width: 400px;',
+                'placeholder': 'Observação',
+                'rows': '6',
+                'id': 'exampleFormControlTextarea1'
+            }
+        )
+    )
 
     class Meta:
         model = Expense
