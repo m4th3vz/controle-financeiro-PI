@@ -79,15 +79,6 @@ def confirm_delete_expenses(request):
 # Página da calculadora
 @login_required
 def calculator(request):
-    if request.method == 'POST':
-        expression = request.POST.get('expression')
-        if expression:
-            # Avalia a expressão e obtém o resultado
-            try:
-                result = eval(expression)
-            except Exception as e:
-                result = f"Error: {str(e)}"
-            return render(request, 'calculator.html', {'result': result})
     return render(request, 'calculator.html')
 
 # Personalização da página de login
