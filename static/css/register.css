@@ -1,0 +1,9 @@
+/* Adicionando a cor de fundo roxa */
+body {
+    background-color: #7E57C2;
+}
+
+/* Adicionando margem superior ao container */
+.container {
+    margin-top: 50px; /* ou o valor desejado */
+}

@@ -1,0 +1,42 @@
+/* Define a cor de fundo do corpo da página */
+body {
+    background-color: #7E57C2;
+}
+
+/* Define o espaçamento superior do container */
+.container {
+    padding-top: 50px;
+}
+
+/* Estilização dos cartões com bordas arredondadas e sombra */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo do corpo do cartão */
+.card-body {
+    padding: 30px;
+}
+
+/* Estilização do formulário */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Estilização dos campos de entrada de texto */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Estilo dos parágrafos */
+p {
+    text-align: center;
+    margin-top: 20px;
+}

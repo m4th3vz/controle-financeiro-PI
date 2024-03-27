@@ -1,0 +1,104 @@
+/* Definindo variáveis de cores */
+:root { 
+    --fundo-banner: #7E57C2; /* Cor de fundo do banner */
+    --letras-banner: #ffffff; /* Cor das letras no banner */
+    --letras-nav-bar-azul: #3E92CC; /* Cor das letras na barra de navegação (azul) */
+    --cor-input: #cfcfcfcf; /* Cor de fundo dos inputs */
+  }
+  
+  /* Estilizando elementos específicos */
+  
+  /* Estilizando as letras do logo */
+  #logo-letras {
+    color: var(--letras-nav-bar-azul);
+  }
+  
+  /* Estilizando a imagem do logo */
+  #logo-img {
+    width: 7rem;
+    height: 7rem;
+  }
+  
+  /* Estilizando os links do menu */
+  #menu-link-color {
+    color: var(--letras-nav-bar-preto);
+  }
+  
+  /* Estilizando o banner */
+  #banner {
+    background-color: var(--fundo-banner);
+    padding: 5rem;
+    padding-bottom: 5rem;
+    text-align: center;
+  }
+  
+  /* Estilizando as letras do banner */
+  #cor-letra-banner {
+    color: var(--letras-banner);
+  }
+  
+  /* Estilizando os cartões */
+  .card {
+    width: 30%;
+    margin-left: 60%;
+    margin-bottom: -170px;
+    height: calc(50% - 10px);
+    border-radius: 10px;
+    background-color: #fff;
+    margin-top: 5%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilizando a imagem do cartão */
+  .card-img-top {
+    width: 130px;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-right: 0%;
+  }
+  
+  /* Estilizando o título */
+  .card-title {
+    font-size: 30px;
+    color: #333;
+  }
+  
+  /* Estilizando o texto */
+  .card-text {
+    font-size: 25px;
+    color: #666;
+  }
+  
+  /* Estilizando o corpo do cartão */
+  .card-body {
+    margin-top: 10px;
+  }
+  
+  /* Estilizando as colunas do layout */
+  .col-md-4 {
+    margin: 0 15px;
+  }
+  
+  .col-md-6 {
+    font-size: 25px;
+    display: grid;
+  }
+
+  /* Estilizando a carta circular */
+.circular-card {
+    width: 200px;
+    height: 200px;
+    margin-top: 250px;
+    margin-right: 300px;
+    border-radius: 50%; /* Torna a carta circular */
+    background-color: #f7f7f7; /* Cor de fundo da carta */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Empilha conteúdo verticalmente */
+    position: relative; /* Necessário para o efeito de sobreposição */
+  }
+  

@@ -1,0 +1,31 @@
+/* Definição de variáveis para cores */
+:root {
+    --fundo-banner: #7E57C2; /* Comentário: Cor de fundo do banner */
+    --letras-banner: #ffffff; /* Comentário: Cor das letras no banner */
+    --letras-nav-bar-azul: #3E92CC; /* Comentário: Cor das letras na barra de navegação azul */
+    --cor-input: #cfcfcfcf; /* Comentário: Cor dos inputs */
+}
+
+/* Estilo para o texto do logo */
+#logo-letras {
+    color: var(--letras-nav-bar-azul); /* Utilização da variável para a cor das letras na barra de navegação azul */
+}
+
+/* Estilo para a imagem do logo */
+#logo-img {
+    width: 5rem; /* Tamanho da largura da imagem do logo */
+    height: 5rem; /* Tamanho da altura da imagem do logo */
+}
+
+/* Estilo para o banner */
+#banner {
+    background-color: var(--fundo-banner); /* Utilização da variável para a cor de fundo do banner */
+    padding: 5rem; /* Espaçamento interno do banner */
+    padding-bottom: 5rem; /* Espaçamento inferior do banner */
+    text-align: center; /* Alinhamento do texto no centro */
+}
+
+/* Estilo para o texto do banner */
+#cor-letra-banner {
+    color: var(--letras-banner); /* Utilização da variável para a cor das letras no banner */
+}

@@ -1,58 +1,13 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{% static 'js/calculadora.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/calculator.css' %}">
     <title>Calculadora</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 100px; /* Adiciona um espaço para o visor do resultado */
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        .container {
-            position: relative;
-        }
-
-        #resultado {
-            position: absolute;
-            top: -90px; /* Posiciona o visor acima da calculadora */
-            width: 100%;
-            height: 50px;
-            font-size: 24px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box; /* Garante que a altura do visor não adicionará espaço extra */
-            padding: 5px;
-        }
-
-        table {
-            margin: 0 auto;
-            margin-top: 80px; /* Adiciona um espaço entre o visor e a calculadora */
-        }
-
-        .botao {
-            width: 50px;
-            height: 50px;
-            font-size: 20px;
-            margin: 5px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .botao:hover {
-            background-color: #e0e0e0;
-        }
-    </style>
 </head>
 <body>
     <h1>Calculadora</h1>
@@ -81,42 +36,13 @@
                 <td><button class="botao" onclick="insert('1')">1</button></td>
                 <td><button class="botao" onclick="insert('2')">2</button></td>
                 <td><button class="botao" onclick="insert('3')">3</button></td>
-                <td rowspan="2"><button class="botao" style="height: 106px;" onclick="calcular()">=</button></td>
+                <td rowspan="2"><button class="botao" style="height: 115px;" onclick="calcular()">=</button></td>
             </tr>
             <tr>
-                <td colspan="2"><button class="botao" style="width: 106px;" onclick="insert('0')">0</button></td>
+                <td colspan="2"><button class="botao" style="width: 115px;" onclick="insert('0')">0</button></td>
                 <td><button class="botao" onclick="insert('.')">.</button></td>
             </tr>
         </table>
     </div>
-
-    <script>
-        function insert(num)
-        {
-            var numero = document.getElementById('resultado').innerHTML;
-            document.getElementById('resultado').innerHTML = numero + num;
-        }
-        function clean()
-        {
-            document.getElementById('resultado').innerHTML = "";
-        }
-        function back()
-        {
-            var resultado = document.getElementById('resultado').innerHTML;
-            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
-        }
-        function calcular()
-        {
-            var resultado = document.getElementById('resultado').innerHTML;
-            if(resultado)
-            {
-                document.getElementById('resultado').innerHTML = eval(resultado);
-            }
-            else
-            {
-                document.getElementById('resultado').innerHTML = "Nada..."
-            }
-        }
-    </script>
 </body>
 </html>

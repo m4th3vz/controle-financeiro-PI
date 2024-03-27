@@ -1,26 +1,13 @@
-{% load static %}
+{% load static %} <!-- Carrega arquivos estáticos -->
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <!-- Adicionando estilos CSS Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <!-- Adicionando estilos personalizados -->
-    <style>
-        /* Adicionando a cor de fundo roxa */
-        body {
-            background-color: #7E57C2;
-        }
-        
-        /* Adicionando margem superior ao container */
-        .container {
-            margin-top: 50px; /* ou o valor desejado */
-        }
-
-    </style>
+    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Define a escala inicial para dispositivos móveis -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"> <!-- Link para o Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}"> <!-- Link para o arquivo de estilos personalizado -->
+    <title>Registro</title> <!-- Título da página -->
 </head>
 <body>
     <div class="container">
@@ -28,22 +15,21 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <div class="text-center">
-                            <!-- Aqui pode ser um logotipo, se desejar -->
+                        <div class="text-center">                           
                         </div>
-                        <h1 class="text-center"><strong>Crie sua conta!</strong></h1>
+                        <!-- Título -->
+                        <h1 class="text-center"><strong>Crie sua conta!</strong></h1>                        
                         <!-- Formulário de registro -->
-                        <form method="post">
-                            <!-- CSRF Token para proteção contra Cross-Site Request Forgery -->
-                            {% csrf_token %}
-                            <!-- Renderiza o formulário de registro -->
-                            {{ form.as_p }}
-                            <!-- Botão de submissão do formulário -->
+                        <form method="post">                            
+                            {% csrf_token %} <!-- Token CSRF para segurança -->
+                            {{ form.as_p }} <!-- Renderiza o formulário de acordo com o modelo definido -->
+                            <!-- Botão de cadastro -->
                             <div style="display: flex; flex-direction: column; align-items: center;">
                                 <button type="submit" class="btn btn-warning btn-block">Cadastrar</button>
                                 <br>
+                                <!-- Logo -->
                                 <img width="150px" src="{% static 'img/bolso-controlado.png'%}" alt="logo">
-                                <p style="color: #3E92CC;">Bolso Controlado</p>
+                                <p style="color: #3E92CC;">Bolso Controlado</p> <!-- Texto informativo -->
                             </div>
                         </form>
                     </div>
