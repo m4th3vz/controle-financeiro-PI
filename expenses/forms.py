@@ -15,11 +15,12 @@ class ExpenseForm(forms.ModelForm):
     observation = forms.CharField(
         label='Informações adicionais sobre este gasto:',
         max_length=60,
+        required=False,
         widget=forms.Textarea(
             attrs={
                 'class': 'form-control mx-auto',
                 'style': 'background-color: var(--cor-input); max-width: 400px;',
-                'placeholder': 'Observação',
+                'placeholder': 'Este campo é opcional',
                 'rows': '6',
                 'id': 'exampleFormControlTextarea1'
             }
