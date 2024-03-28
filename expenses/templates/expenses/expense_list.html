@@ -35,7 +35,15 @@
         <!-- Loop sobre todas as despesas -->
         {% for expense in expenses %}
             <!-- Exibe cada despesa com seu título, valor e data, e um link para excluí-la -->
-            <li><a href="{% url 'delete_expense' expense.id %}">Excluir</a> - {{ expense.title }} - R$ {{ expense.amount }} - {{ expense.payment_method }} - {{ expense.date }} - {{ expense.observation }}</li>
+            <li>
+                <a href="{% url 'delete_expense' expense.id %}">Excluir</a> - 
+                {{ expense.expense_category }} -
+                {{ expense.title }} - 
+                R$ {{ expense.amount }} - 
+                {{ expense.payment_method }} - 
+                {{ expense.date }} - 
+                {{ expense.observation }}
+            </li>
         {% endfor %}
     </ul>
 

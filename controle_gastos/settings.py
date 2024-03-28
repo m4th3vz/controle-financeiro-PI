@@ -75,6 +75,10 @@ WSGI_APPLICATION = "controle_gastos.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# Comandos para a migração do banco de dados:
+# python manage.py makemigrations
+# python manage.py migrate
+
 # Configuração do MySQL
 
 DATABASES = {

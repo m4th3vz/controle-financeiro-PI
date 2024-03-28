@@ -1,6 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# Defina suas opções de categoria
+CATEGORY_CHOICES = (
+    ('Casa', 'Casa'),
+    ('Contas', 'Contas'),
+    ('Alimentação', 'Alimentação'),
+    ('Saúde', 'Saúde'),
+    ('Educação', 'Educação'),
+    ('Lazer', 'Lazer'),
+    ('Compras', 'Compras'),
+    ('Viagem', 'Viagem'),
+    ('Serviços', 'Serviços'),
+    ('Vestuário', 'Vestuário'),
+    ('Impostos', 'Impostos'),
+    ('Transporte', 'Transporte'),
+    ('Investimentos', 'Investimentos'),
+    ('Outros', 'Outros'),
+)
+
+# Defina suas opções de forma de pagamento
 PAYMENT_CHOICES = (
     ('Dinheiro', 'Dinheiro'),
     ('Crédito', 'Crédito'),
@@ -15,6 +34,8 @@ PAYMENT_CHOICES = (
 
 # Modelo para representar uma despesa
 class Expense(models.Model):
+    # Categoria da despesa (default usado para a migração do banco de dados)
+    expense_category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, verbose_name='Categoria', default='categoria1')
     # Título da despesa
     title = models.CharField(max_length=30, verbose_name='Título')
     # Valor da despesa
@@ -46,4 +67,3 @@ class UserProfile(models.Model):
     def __str__(self):
         # Retorna o nome de usuário associado ao perfil
         return self.user.username
-

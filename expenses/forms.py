@@ -11,6 +11,7 @@ class DateInput(forms.DateInput):
 class ExpenseForm(forms.ModelForm):
     # Sobrescreve o widget para o campo de data
     date = forms.DateField(label='Data',widget=DateInput(format='%d-%m-%Y'))
+    # Campo de informações adicionais sobre o gasto
     observation = forms.CharField(
         label='Informações adicionais sobre este gasto:',
         max_length=60,
@@ -28,7 +29,7 @@ class ExpenseForm(forms.ModelForm):
     class Meta:
         model = Expense
         # Define os campos do modelo Expense que serão exibidos no formulário
-        fields = ['title', 'amount', 'date', 'payment_method', 'observation']
+        fields = ['expense_category', 'title', 'amount', 'date', 'payment_method', 'observation']
 
 # Formulário para registro de usuário
 class UserRegistrationForm(UserCreationForm):
