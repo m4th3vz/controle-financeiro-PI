@@ -24,4 +24,16 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     # URL para página de boas-vindas
     path('welcome/', views.welcome, name='welcome'),
+    # URL para página da calculadora de empréstimo
+    path('loan-calculator/', views.loan_calculator, name='loan_calculator'),
+    # URL para página da calculadora juros simples
+    path('simple-interest-calculator/', views.simple_interest_calculator, name='simple_interest_calculator'),
+    # URL para página da calculadora juros compostos
+    path('compound-interest-calculator/', views.compound_interest_calculator, name='compound_interest_calculator'),
+    # URL para página da calculadora de investimentos
+    path('investment-calculator/', views.investment_calculator, name='investment_calculator'),
+    # URL para página da calculadora de prestações
+    path('installment-calculator/', views.installment_calculator, name='installment_calculator'),
+    # URL para a lista de calculadoras
+    path('calc_list/', views.calc_list, name='calc_list'),
 ]

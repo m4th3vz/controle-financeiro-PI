@@ -38,3 +38,33 @@ class UserRegistrationForm(UserCreationForm):
         model = User
         # Define os campos do modelo User que serão exibidos no formulário de registro
         fields = ['username', 'password1', 'password2']
+
+# Formulário para a calculadora de empréstimo
+class LoanCalculatorForm(forms.Form):
+    principal = forms.DecimalField(label='Valor do Empréstimo', max_digits=10, decimal_places=2)
+    taxa_juros = forms.DecimalField(label='Taxa de Juros (%)', max_digits=5, decimal_places=2)
+    periodo = forms.IntegerField(label='Período (anos)')
+
+# Formulário para a calculadora de juros simples
+class SimpleInterestCalculatorForm(forms.Form):
+    principal = forms.DecimalField(label='Valor Principal', max_digits=10, decimal_places=2)
+    taxa_juros = forms.DecimalField(label='Taxa de Juros (%)', max_digits=5, decimal_places=2)
+    periodo = forms.IntegerField(label='Período (em anos)')
+
+# Formulário para a calculadora de juros compostos
+class CompoundInterestCalculatorForm(forms.Form):
+    principal = forms.DecimalField(label='Valor Principal', max_digits=10, decimal_places=2)
+    taxa_juros = forms.DecimalField(label='Taxa de Juros (%)', max_digits=5, decimal_places=2)
+    periodo = forms.IntegerField(label='Período (em anos)')
+
+# Formulário para a calculadora de investimentos
+class InvestmentCalculatorForm(forms.Form):
+    valor_inicial = forms.DecimalField(label='Valor Inicial', max_digits=10, decimal_places=2)
+    taxa_juros = forms.DecimalField(label='Taxa de Juros (%)', max_digits=5, decimal_places=2)
+    periodo = forms.IntegerField(label='Período (em anos)')
+
+# Formulário para a calculadora de prestações
+class InstallmentCalculatorForm(forms.Form):
+    montante = forms.DecimalField(label='Montante', max_digits=10, decimal_places=2)
+    taxa_juros = forms.DecimalField(label='Taxa de Juros (%)', max_digits=5, decimal_places=2)
+    periodo = forms.IntegerField(label='Período (em anos)')
