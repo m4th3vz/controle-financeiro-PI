@@ -25,15 +25,15 @@ urlpatterns = [
     # URL para página de boas-vindas
     path('welcome/', views.welcome, name='welcome'),
     # URL para página da calculadora de empréstimo
-    path('loan-calculator/', views.loan_calculator, name='loan_calculator'),
+    path('loan-calculator/', views.calc_loan, name='calc_loan'),
     # URL para página da calculadora juros simples
-    path('simple-interest-calculator/', views.simple_interest_calculator, name='simple_interest_calculator'),
+    path('simple-interest-calculator/', views.calc_simple_interest, name='calc_simple_interest'),
     # URL para página da calculadora juros compostos
-    path('compound-interest-calculator/', views.compound_interest_calculator, name='compound_interest_calculator'),
+    path('compound-interest-calculator/', views.calc_compound_interest, name='calc_compound_interest'),
     # URL para página da calculadora de investimentos
-    path('investment-calculator/', views.investment_calculator, name='investment_calculator'),
+    path('investment-calculator/', views.calc_investment, name='calc_investment'),
     # URL para página da calculadora de prestações
-    path('installment-calculator/', views.installment_calculator, name='installment_calculator'),
+    path('installment-calculator/', views.calc_installment, name='calc_installment'),
     # URL para a lista de calculadoras
-    path('calc_list/', views.calc_list, name='calc_list'),
+    path('calculator_list/', views.calc_list, name='calc_list'),
 ]

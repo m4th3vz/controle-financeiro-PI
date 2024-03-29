@@ -58,6 +58,13 @@
 
     <!-- Link para a página de boas-vindas -->
     <a href="{% url 'welcome' %}">Página inicial</a>
+
+    <h2>Soma das Despesas por Categoria:</h2>
+    <ul>
+        {% for category in expenses_by_category %}
+            <li>{{ category.expense_category }}: R$ {{ category.total_amount }}</li>
+        {% endfor %}
+    </ul>
 </form>
 </body>
 </html>

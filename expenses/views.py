@@ -37,7 +37,10 @@ def expense_list(request):
     # Calcula a diferença entre a renda mensal e o total das despesas
     difference = salary - total_expenses if salary is not None else None
 
-    return render(request, 'expenses/expense_list.html', {'expenses': expenses, 'total_expenses': total_expenses, 'salary': salary, 'difference': difference})
+    # Calcular a soma das despesas para cada categoria
+    expenses_by_category = Expense.objects.filter(user=request.user).values('expense_category').annotate(total_amount=Sum('amount'))
+    
+    return render(request, 'expenses/expense_list.html', {'expenses': expenses, 'total_expenses': total_expenses, 'salary': salary, 'difference': difference, 'expenses_by_category': expenses_by_category})
 
 # Adicionar despesa
 @login_required
@@ -66,8 +69,10 @@ def delete_expense(request, expense_id):
 # Excluir todas as despesas
 @login_required
 def delete_all_expenses(request):
+    # Verificar se o método da requisição é POST
     if request.method == 'POST':
-        Expense.objects.all().delete()
+        # Excluir todas as despesas do usuário logado
+        Expense.objects.filter(user=request.user).delete()
         return redirect('expense_list')
     return redirect('confirm_delete_expenses')
 
@@ -120,8 +125,9 @@ def calculadora_de_emprestimo(principal, taxa_juros, periodo):
 
     return round(pagamento_mensal, 2)
 
-# View para a calculadora de empréstimo
-def loan_calculator(request):
+# Esta view é uma aplicação Django e coordena a interação do usuário com a interface web
+@login_required
+def calc_loan(request):
     if request.method == 'POST':
         form = LoanCalculatorForm(request.POST)
         if form.is_valid():
@@ -129,10 +135,10 @@ def loan_calculator(request):
             taxa_juros = form.cleaned_data['taxa_juros']
             periodo = form.cleaned_data['periodo']
             pagamento_mensal = calculadora_de_emprestimo(principal, taxa_juros, periodo)
-            return render(request, 'loan_calculator.html', {'form': form, 'pagamento_mensal': pagamento_mensal})
+            return render(request, 'calc_loan.html', {'form': form, 'pagamento_mensal': pagamento_mensal})
     else:
         form = LoanCalculatorForm()
-    return render(request, 'loan_calculator.html', {'form': form})
+    return render(request, 'calc_loan.html', {'form': form})
 
 #--------------------------------------#
 # Função para Calcular Juros Simples
@@ -142,7 +148,8 @@ def juros_simples(principal, taxa_juros, periodo):
     return round(montante, 2)
 
 # View para a calculadora de juros simples
-def simple_interest_calculator(request):
+@login_required
+def calc_simple_interest(request):
     if request.method == 'POST':
         form = SimpleInterestCalculatorForm(request.POST)
         if form.is_valid():
@@ -150,10 +157,10 @@ def simple_interest_calculator(request):
             taxa_juros = form.cleaned_data['taxa_juros']
             periodo = form.cleaned_data['periodo']
             montante = juros_simples(principal, taxa_juros, periodo)
-            return render(request, 'simple_interest_calculator.html', {'form': form, 'montante': montante})
+            return render(request, 'calc_simple_interest.html', {'form': form, 'montante': montante})
     else:
         form = SimpleInterestCalculatorForm()
-    return render(request, 'simple_interest_calculator.html', {'form': form})
+    return render(request, 'calc_simple_interest.html', {'form': form})
 
 #--------------------------------------#
 # Função para Calcular Juros Compostos
@@ -163,7 +170,8 @@ def juros_compostos(principal, taxa_juros, periodo):
     return round(montante, 2)
 
 # View para a calculadora de juros compostos
-def compound_interest_calculator(request):
+@login_required
+def calc_compound_interest(request):
     if request.method == 'POST':
         form = CompoundInterestCalculatorForm(request.POST)
         if form.is_valid():
@@ -171,10 +179,10 @@ def compound_interest_calculator(request):
             taxa_juros = form.cleaned_data['taxa_juros']
             periodo = form.cleaned_data['periodo']
             montante = juros_compostos(principal, taxa_juros, periodo)
-            return render(request, 'compound_interest_calculator.html', {'form': form, 'montante': montante})
+            return render(request, 'calc_compound_interest.html', {'form': form, 'montante': montante})
     else:
         form = CompoundInterestCalculatorForm()
-    return render(request, 'compound_interest_calculator.html', {'form': form})
+    return render(request, 'calc_compound_interest.html', {'form': form})
 
 #--------------------------------------#
 # Função para Calcular Investimentos
@@ -183,7 +191,8 @@ def calculadora_investimento(valor_inicial, taxa_juros, periodo):
     return round(montante, 2)
 
 # View para a calculadora de investimento
-def investment_calculator(request):
+@login_required
+def calc_investment(request):
     if request.method == 'POST':
         form = InvestmentCalculatorForm(request.POST)
         if form.is_valid():
@@ -191,10 +200,10 @@ def investment_calculator(request):
             taxa_juros = form.cleaned_data['taxa_juros']
             periodo = form.cleaned_data['periodo']
             montante = calculadora_investimento(valor_inicial, taxa_juros, periodo)
-            return render(request, 'investment_calculator.html', {'form': form, 'montante': montante})
+            return render(request, 'calc_investment.html', {'form': form, 'montante': montante})
     else:
         form = InvestmentCalculatorForm()
-    return render(request, 'investment_calculator.html', {'form': form})
+    return render(request, 'calc_investment.html', {'form': form})
 
 #--------------------------------------#
 # Função para Calcular Prestações
@@ -208,7 +217,8 @@ def calculadora_prestacoes(montante, taxa_juros, periodo):
     return round(prestacao, 2)
 
 # View para a calculadora de prestações
-def installment_calculator(request):
+@login_required
+def calc_installment(request):
     if request.method == 'POST':
         form = InstallmentCalculatorForm(request.POST)
         if form.is_valid():
@@ -216,7 +226,7 @@ def installment_calculator(request):
             taxa_juros = form.cleaned_data['taxa_juros']
             periodo = form.cleaned_data['periodo']
             prestacao = calculadora_prestacoes(montante, taxa_juros, periodo)
-            return render(request, 'installment_calculator.html', {'form': form, 'prestacao': prestacao})
+            return render(request, 'calc_installment.html', {'form': form, 'prestacao': prestacao})
     else:
         form = InstallmentCalculatorForm()
-    return render(request, 'installment_calculator.html', {'form': form})
+    return render(request, 'calc_installment.html', {'form': form})
