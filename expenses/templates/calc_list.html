@@ -5,25 +5,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Importação do Bootstrap 5 via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Link para o arquivo de estilos personalizado -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/calc_list.css' %}">
     <title>Calculadoras</title>
 </head>
 <body>
-    <!-- Link para a calculadora -->
-    <a href="{% url 'calculator' %}">Calculadora</a>
-
-    <!-- Link para a calculadora de juros simples -->
-    <a href="{% url 'calc_simple_interest' %}">Calculadora de Juros Simples</a>
-
-    <!-- Link para a calculadora de juros compostos -->
-    <a href="{% url 'calc_compound_interest' %}">Calculadora de Juros Compostos</a>
-
-    <!-- Link para a calculadora de empréstimo -->
-    <a href="{% url 'calc_loan' %}">Calculadora de Empréstimo</a>
-
-    <!-- Link para a calculadora de investimentos -->
-    <a href="{% url 'calc_investment' %}">Calculadora de Investimentos</a>
-
-    <!-- Link para a calculadora de prestações -->
-    <a href="{% url 'calc_installment' %}">Calculadora de Prestações</a>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <!-- Logo do site -->
+        <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
+        <div id="logo-letras" class="display-6"><strong>Bolso Controlado</strong></div>
+        <!-- Links de navegação -->
+        <ul class="nav justify-content-end ">
+            <!-- Link para a lista de despesas -->
+            <a style="color:black" class="nav-link" href="{% url 'expense_list' %}">Suas despesas</a>
+            <li class="nav-item">
+                <!-- Link para a lista de calculadoras (página atual) -->
+                <a style="color:black" class="nav-link" href="{% url 'calc_list' %}">Calculadoras</a>
+            <li class="nav-item">
+                <!-- Link para a página de investimento -->
+                <a style="color:black" class="nav-link active" aria-current="page" href="#">Investimento</a>
+            </li>
+            <li class="nav-item">
+                <!-- Formulário para logout -->
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" style="color: black; background-color: transparent; border: none; cursor: pointer;" class="nav-link">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- Token CSRF para proteção contra ataques CSRF -->
+{% csrf_token %}
+<!-- Banner -->
+<div id="banner">
+    <h1 id="cor-letra-banner">Calculadora Financeira</h1>
+    <p id="cor-letra-banner">Cálculo de juros simples, compostos, empréstimo, investimentos e prestações</p>
+</div>
+<br>
+<!-- Título -->
+<h2 id="centralizar">Escolha uma calculadora:</h2>
+<br><br>
+<!-- Link para a calculadora -->
+<div class="d-grid gap-1 col-4 mx-auto">
+    <button onclick="window.location.href='{% url 'calculator' %}'" class="btn btn-warning">Calculadora</button>
+</div>
+<br>
+<!-- Link para a calculadora de juros simples -->
+<div class="d-grid gap-1 col-4 mx-auto">
+    <button onclick="window.location.href='{% url 'calc_simple_interest' %}'" class="btn btn-warning">Calculadora de Juros Simples</button>
+</div>
+<br>
+<!-- Link para a calculadora de juros compostos -->
+<div class="d-grid gap-1 col-4 mx-auto">
+    <button onclick="window.location.href='{% url 'calc_compound_interest' %}'" class="btn btn-warning">Calculadora de Juros Compostos</button>
+</div>
+<br>
+<!-- Link para a calculadora de empréstimo -->
+<div class="d-grid gap-1 col-4 mx-auto">
+    <button onclick="window.location.href='{% url 'calc_loan' %}'" class="btn btn-warning">Calculadora de Empréstimo</button>
+</div>
+<br>
+<!-- Link para a calculadora de investimentos -->
+<div class="d-grid gap-1 col-4 mx-auto">
+    <button onclick="window.location.href='{% url 'calc_investment' %}'" class="btn btn-warning">Calculadora de Investimentos</button>
+</div>
+<br>
+<!-- Link para a calculadora de prestações -->
+<div class="d-grid gap-1 col-4 mx-auto">
+    <button onclick="window.location.href='{% url 'calc_installment' %}'" class="btn btn-warning">Calculadora de Prestações</button>
+</div>
+<!-- Token CSRF para proteção contra ataques CSRF -->
+{% csrf_token %}
+<!-- Rodapé -->
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top" style="margin-top: 130px;">
+    <ul class="nav col-md-4 justify-content-center">
+        <!-- Links de navegação adicionais -->
+        <li class="nav-item"><a href="{% url 'welcome' %}" class="nav-link px-2 text-muted">Início</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Sobre</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Dev</a></li>
+    </ul>
+    <!-- Informações de direitos autorais -->
+    <p class="col-md-4 mb-0 text-muted">© 2024 Projeto Integrador Univesp</p>
+</footer>
 </body>
 </html>

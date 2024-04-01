@@ -11,6 +11,8 @@ class DateInput(forms.DateInput):
 class ExpenseForm(forms.ModelForm):
     # Sobrescreve o widget para o campo de data
     date = forms.DateField(label='Data',widget=DateInput(format='%d-%m-%Y'))
+    # Campo de informações adicionais sobre o título
+    title = forms.CharField(label='Título',max_length=20)
     # Campo de informações adicionais sobre o gasto
     observation = forms.CharField(
         label='Informações adicionais sobre este gasto:',
@@ -34,37 +36,105 @@ class ExpenseForm(forms.ModelForm):
 
 # Formulário para registro de usuário
 class UserRegistrationForm(UserCreationForm):
+    username = forms.CharField(label='Usuário', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu nome de usuário', 'autocomplete': 'username', 'id': 'username'}), help_text='• Máximo de 150 caracteres.<br>• Letras, números e @/./+/-/_ apenas.')
+    password1 = forms.CharField(label='Senha', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Digite sua senha', 'autocomplete': 'new-password', 'id': 'password1', 'type': 'password'}), help_text='• Sua senha não pode ser muito parecida com o seu nome de usuário.<br>• Sua senha precisa conter pelo menos 8 caracteres.<br>• Sua senha não pode ser uma senha comumente utilizada.<br>• Sua senha não pode ser inteiramente numérica.')
+    password2 = forms.CharField(label='Confirme a senha', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirme sua senha', 'autocomplete': 'new-password', 'id': 'password2', 'type': 'password'}), help_text='• Digite novamente a senha para confirmação.')
+
     class Meta:
         model = User
-        # Define os campos do modelo User que serão exibidos no formulário de registro
         fields = ['username', 'password1', 'password2']
 
 # Formulário para a calculadora de empréstimo
 class LoanCalculatorForm(forms.Form):
-    principal = forms.DecimalField(label='Valor do Empréstimo', max_digits=10, decimal_places=2)
-    taxa_juros = forms.DecimalField(label='Taxa de Juros (%)', max_digits=5, decimal_places=2)
-    periodo = forms.IntegerField(label='Período (anos)')
+    principal = forms.DecimalField(
+        label='Valor do Empréstimo',
+        max_digits=10,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
+    taxa_juros = forms.DecimalField(
+        label='Taxa de Juros (%)',
+        max_digits=5,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
+    periodo = forms.IntegerField(
+        label='Período (anos)',
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
 
 # Formulário para a calculadora de juros simples
 class SimpleInterestCalculatorForm(forms.Form):
-    principal = forms.DecimalField(label='Valor Principal', max_digits=10, decimal_places=2)
-    taxa_juros = forms.DecimalField(label='Taxa de Juros (%)', max_digits=5, decimal_places=2)
-    periodo = forms.IntegerField(label='Período (em anos)')
+    principal = forms.DecimalField(
+        label='Valor Principal',
+        max_digits=10,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
+    taxa_juros = forms.DecimalField(
+        label='Taxa de Juros (%)',
+        max_digits=5,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
+    periodo = forms.IntegerField(
+        label='Período (anos)',
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
 
 # Formulário para a calculadora de juros compostos
 class CompoundInterestCalculatorForm(forms.Form):
-    principal = forms.DecimalField(label='Valor Principal', max_digits=10, decimal_places=2)
-    taxa_juros = forms.DecimalField(label='Taxa de Juros (%)', max_digits=5, decimal_places=2)
-    periodo = forms.IntegerField(label='Período (em anos)')
+    principal = forms.DecimalField(
+        label='Valor Principal',
+        max_digits=10,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
+    taxa_juros = forms.DecimalField(
+        label='Taxa de Juros (%)',
+        max_digits=5,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
+    periodo = forms.IntegerField(
+        label='Período (anos)',
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
 
 # Formulário para a calculadora de investimentos
 class InvestmentCalculatorForm(forms.Form):
-    valor_inicial = forms.DecimalField(label='Valor Inicial', max_digits=10, decimal_places=2)
-    taxa_juros = forms.DecimalField(label='Taxa de Juros (%)', max_digits=5, decimal_places=2)
-    periodo = forms.IntegerField(label='Período (em anos)')
+    principal = forms.DecimalField(
+        label='Valor Inicial',
+        max_digits=10,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
+    taxa_juros = forms.DecimalField(
+        label='Taxa de Juros (%)',
+        max_digits=5,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
+    periodo = forms.IntegerField(
+        label='Período (anos)',
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
 
 # Formulário para a calculadora de prestações
 class InstallmentCalculatorForm(forms.Form):
-    montante = forms.DecimalField(label='Montante', max_digits=10, decimal_places=2)
-    taxa_juros = forms.DecimalField(label='Taxa de Juros (%)', max_digits=5, decimal_places=2)
-    periodo = forms.IntegerField(label='Período (em anos)')
+    principal = forms.DecimalField(
+        label='Montante',
+        max_digits=10,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
+    taxa_juros = forms.DecimalField(
+        label='Taxa de Juros (%)',
+        max_digits=5,
+        decimal_places=2,
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )
+    periodo = forms.IntegerField(
+        label='Período (anos)',
+        widget=forms.NumberInput(attrs={'class': 'form-control text-center', 'style': 'background-color: var(--cor-input)'})
+    )

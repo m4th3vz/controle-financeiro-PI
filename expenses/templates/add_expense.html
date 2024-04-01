@@ -10,28 +10,32 @@
     <title>Adicionar Despesa</title> <!-- Título da página -->
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">  
-    <div class="container-fluid"> 
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
         <!-- Logo do site -->
         <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
-        <div id="logo-letras" class="display-6"><strong>Bolso Controlado</strong></div>   
+        <div id="logo-letras" class="display-6"><strong>Bolso Controlado</strong></div>
         <!-- Links de navegação -->
         <ul class="nav justify-content-end ">
-          <a style="color:black"class="nav-link" href="{% url 'expense_list' %}">Suas despesas</a>
-            <li class="nav-item">   
-            <a style="color:black"class="nav-link" href="{% url 'calculator' %}">Calculadora</a>
+            <!-- Link para a lista de despesas -->
+            <a style="color:black" class="nav-link" href="{% url 'expense_list' %}">Suas despesas</a>
             <li class="nav-item">
-                <a style="color:black"class="nav-link active" aria-current="page" href="#">Investimento</a> 
+                <!-- Link para a lista de calculadoras (página atual) -->
+                <a style="color:black" class="nav-link" href="{% url 'calc_list' %}">Calculadoras</a>
+            <li class="nav-item">
+                <!-- Link para a página de investimento -->
+                <a style="color:black" class="nav-link active" aria-current="page" href="#">Investimento</a>
             </li>
             <li class="nav-item">
-              <form action="{% url 'logout' %}" method="post">
-                {% csrf_token %}              
-                <button type="submit" style="color: black; background-color: transparent; border: none; cursor: pointer;" class="nav-link">Logout</button>
-            </form>              
-            </li>         
-       </div>            
-     </div>               
-  </nav>  
+                <!-- Formulário para logout -->
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" style="color: black; background-color: transparent; border: none; cursor: pointer;" class="nav-link">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
     <!-- Banner -->
     <div id ="banner">
        <h1 id="cor-letra-banner">Adicionar Despesa</h1>
@@ -59,6 +63,6 @@
         </ul>  
         <!-- Informação de direitos autorais -->
         <p class="col-md-4 mb-0 text-muted">© 2024 Projeto Integrador Univesp</p>
-    </footer>   
+    </footer>
 </body>
 </html>

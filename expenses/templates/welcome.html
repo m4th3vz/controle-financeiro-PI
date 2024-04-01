@@ -11,42 +11,42 @@
 </head>
 <body>
   <!-- Barra de navegação -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">  
-      <div class="container-fluid"> 
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
           <!-- Logo do site -->
           <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
           <div id="logo-letras" class="display-6"><strong>Bolso Controlado</strong></div>   
           <!-- Links de navegação -->
           <ul class="nav justify-content-end ">
             <a style="color:black"class="nav-link" href="{% url 'expense_list' %}">Suas despesas</a>
-              <li class="nav-item">   
+              <li class="nav-item">
               <a style="color:black"class="nav-link" href="{% url 'calc_list' %}">Calculadoras</a>
               <li class="nav-item">
                   <a style="color:black"class="nav-link active" aria-current="page" href="#">Investimento</a> 
               </li>
               <li class="nav-item">
                 <form action="{% url 'logout' %}" method="post">
-                  {% csrf_token %}               
+                  {% csrf_token %}
                   <button type="submit" style="color: black; background-color: transparent; border: none; cursor: pointer;" class="nav-link">Logout</button>
-              </form>              
+              </form>
               </li>
-          </ul>                
-      </div>            
-  </div>               
-  </nav>  
+          </ul>
+      </div>
+  </div>
+  </nav>
   
   <!-- Formulário de login ou logout -->
-  <form method="post"> 
-    {% csrf_token %} 
+  <form method="post">
+    {% csrf_token %}
     {{ form.as_p }} <!-- Renderiza o formulário de acordo com o modelo definido -->
   </form>
-  
+
   <!-- Banner de boas-vindas -->
   <div id ="banner">
      <h1 style="font-size: 55px; margin-bottom: -10px;" id="cor-letra-banner"><strong>Bem-vindo ao nosso site</strong></h1>
      <p style="font-size: 55px;" id="cor-letra-banner"><strong>de finanças pessoais</strong></p>
      <p style="font-size: 23px;" id="cor-letra-banner">Pequenas economias, grandes mudanças: seu futuro financeiro começa agora.</p>
-  </div>  
+  </div>
   
   <!-- Cards com informações sobre calculadora financeira e planejamento financeiro -->
   <div class="card">
@@ -85,13 +85,13 @@
       <h3 style="margin-left:5%;">Orçamentos</h3>
       <p style="margin-left: -2px;">Acompanhe seus ganhos</p>
       <p style="margin-top: -15px; margin-left: 60px;">e gastos</p>
-    </div>  
+    </div>
     
     <div>
       <!-- Card com dicas sobre investimentos -->
       <div class="circular-card">
         <center><img src="{% static 'img/grafico.png'%}" alt="Imagem do card" class="card-img-top"></center>
-        <div class="card-content"></div>   
+        <div class="card-content"></div>
       </div>
       <h3 style="margin-left:2%;">Investimentos</h3>
       <p style="margin-left: -60px;">Maximize os retornos com investimentos</p>
@@ -100,7 +100,7 @@
   </section>
   
   <!-- Seção "Sobre o Bolso Controlado" -->
-    <center> 
+    <center>
       <h1 style="color: var(--fundo-banner); margin-top:5%; margin-bottom:2%; font-size: 55px;"><strong>Sobre o Bolso Controlado</strong></h1>
     </center>
 
@@ -115,7 +115,7 @@
       
       <p style="padding: 0 450px; margin-bottom: 20px; font-size: 22px; color: black;">
       Estamos entusiasmados em embarcar nesta jornada com você e estamos aqui para ajudar a colocar seu bolso sob controle, para que você possa alcançar seus objetivos financeiros com confiança e tranquilidade.</p>
-      
+
 <!-- Este bloco define um contêiner (div) com estilo flexível -->
 <div style="display: flex; flex-direction: column; align-items: center;">
   <!-- Uma imagem dentro do contêiner -->
@@ -129,7 +129,7 @@
   <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Início</a></li>
   <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Sobre</a></li>
   <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Dev</a></li>
-</ul>  
+</ul>
 <!-- Texto de direitos autorais -->
 <p class="col-md-4 mb-0 text-muted">© 2024 Projeto Integrador Univesp</p>
 </footer>

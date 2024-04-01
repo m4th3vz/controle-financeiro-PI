@@ -2,7 +2,7 @@
 body {
     font-family: Arial, sans-serif; /* Fonte do texto */
     text-align: center; /* Alinhamento do texto */
-    margin-top: 100px; /* Adiciona um espaço para o visor do resultado */
+    margin-top: 0px; /* Adiciona um espaço para o visor do resultado */
 }
 
 /* Estilizando o título principal */
@@ -18,7 +18,7 @@ h1 {
 /* Estilizando o visor do resultado */
 #resultado {
     position: absolute; /* Posicionamento absoluto para sobrepor outros elementos */
-    top: -90px; /* Posiciona o visor acima da calculadora */
+    top: -60px; /* Posiciona o visor acima da calculadora */
     width: 100%;
     height: 50px;
     font-size: 24px;
