@@ -1,15 +1,3 @@
-/* Definindo estilos para o corpo da página */
-body {
-    font-family: Arial, sans-serif; /* Fonte do texto */
-    text-align: center; /* Alinhamento do texto */
-    margin-top: 0px; /* Adiciona um espaço para o visor do resultado */
-}
-
-/* Estilizando o título principal */
-h1 {
-    color: #333; /* Cor do título */
-}
-
 /* Container para posicionar elementos relativos */
 .container {
     position: relative;
@@ -19,11 +7,13 @@ h1 {
 #resultado {
     position: absolute; /* Posicionamento absoluto para sobrepor outros elementos */
     top: -60px; /* Posiciona o visor acima da calculadora */
-    width: 100%;
+    width: 98%;
     height: 50px;
     font-size: 24px;
-    background-color: #f9f9f9; /* Cor de fundo do visor */
-    border: 1px solid #ccc; /* Borda do visor */
+    font-family: Arial, sans-serif; /* Fonte do texto */
+    text-align: center; /* Alinhamento do texto */
+    background-color: #AECAE7; /* Cor de fundo do visor */
+    border: 1px solid #74a3c9; /* Borda do visor */
     border-radius: 5px; /* Borda arredondada */
     box-sizing: border-box; /* Garante que a altura do visor não adicionará espaço extra */
     padding: 5px; /* Espaçamento interno do visor */
@@ -37,12 +27,13 @@ table {
 
 /* Estilizando os botões da calculadora */
 .botao {
-    width: 50px; /* Largura dos botões */
-    height: 50px; /* Altura dos botões */
-    font-size: 20px; /* Tamanho da fonte dos botões */
+    width: 60px; /* Largura dos botões */
+    height: 60px; /* Altura dos botões */
+    font-size: 24px; /* Tamanho da fonte dos botões */
+    font-family: Arial, sans-serif; /* Fonte do texto */
     margin: 5px; /* Espaçamento entre os botões */
-    background-color: #f0f0f0; /* Cor de fundo dos botões */
-    border: 1px solid #ccc; /* Borda dos botões */
+    background-color: #AECAE7; /* Cor de fundo dos botões */
+    border: 1px solid #74a3c9; /* Borda dos botões */
     border-radius: 5px; /* Borda arredondada dos botões */
     cursor: pointer; /* Cursor do mouse ao passar sobre os botões */
     transition: background-color 0.3s ease; /* Transição suave da cor de fundo dos botões */
@@ -50,5 +41,5 @@ table {
 
 /* Efeito de hover nos botões */
 .botao:hover {
-    background-color: #e0e0e0; /* Cor de fundo dos botões ao passar o mouse */
+    background-color: #74a3c9; /* Cor de fundo dos botões ao passar o mouse */
 }

@@ -17,9 +17,15 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <!-- Logo do site -->
-        <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
-        <div id="logo-letras" class="display-6"><strong>Bolso Controlado</strong></div>
+        <div style="display: flex; align-items: center;">
+            <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
+            <div id="logo-letras" class="display-6" style="margin-left: 10px;"><strong>Bolso Controlado</strong></div>
+        </div>
         <!-- Links de navegação -->
+        <ul class="nav justify-content-end ">
+            <!-- Link para a página inicial -->
+            <a style="color:black"class="nav-link" href="{% url 'welcome' %}">Bem-vindo</a>
+              <li class="nav-item">
         <ul class="nav justify-content-end ">
             <!-- Link para a lista de despesas -->
             <a style="color:black" class="nav-link" href="{% url 'expense_list' %}">Suas despesas</a>
@@ -69,10 +75,10 @@
                 <td><button class="botao" onclick="insert('1')">1</button></td>
                 <td><button class="botao" onclick="insert('2')">2</button></td>
                 <td><button class="botao" onclick="insert('3')">3</button></td>
-                <td rowspan="2"><button class="botao" style="height: 115px;" onclick="calcular()">=</button></td>
+                <td rowspan="2"><button class="botao" style="height: 132px;" onclick="calcular()">=</button></td>
             </tr>
             <tr>
-                <td colspan="2"><button class="botao" style="width: 115px;" onclick="insert('0')">0</button></td>
+                <td colspan="2"><button class="botao" style="width: 132px;" onclick="insert('0')">0</button></td>
                 <td><button class="botao" onclick="insert('.')">.</button></td>
             </tr>
         </table>
@@ -82,7 +88,7 @@
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top" style="margin-top: 300px;">
     <ul class="nav col-md-4 justify-content-center">
         <!-- Links de navegação adicionais -->
-        <li class="nav-item"><a href="{% url 'welcome' %}" class="nav-link px-2 text-muted">Início</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Início</a></li>
         <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-muted">Sobre</a></li>
     </ul>
     <!-- Informações de direitos autorais -->

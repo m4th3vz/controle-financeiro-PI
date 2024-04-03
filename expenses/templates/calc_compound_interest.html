@@ -15,10 +15,16 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <!-- Logo do site -->
-        <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
-        <div id="logo-letras" class="display-6"><strong>Bolso Controlado</strong></div>
+        <div style="display: flex; align-items: center;">
+            <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
+            <div id="logo-letras" class="display-6" style="margin-left: 10px;"><strong>Bolso Controlado</strong></div>
+        </div>
         <!-- Links de navegação -->
         <ul class="nav justify-content-end ">
+            <ul class="nav justify-content-end ">
+                <!-- Link para a página inicial -->
+                <a style="color:black"class="nav-link" href="{% url 'welcome' %}">Bem-vindo</a>
+                  <li class="nav-item">
             <!-- Link para a lista de despesas -->
             <a style="color:black" class="nav-link" href="{% url 'expense_list' %}">Suas despesas</a>
             <li class="nav-item">
@@ -55,7 +61,7 @@
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top" style="margin-top: 300px;">
     <ul class="nav col-md-4 justify-content-center">
         <!-- Links de navegação adicionais -->
-        <li class="nav-item"><a href="{% url 'welcome' %}" class="nav-link px-2 text-muted">Início</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Início</a></li>
         <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-muted">Sobre</a></li>
     </ul>
     <!-- Informações de direitos autorais -->

@@ -16,13 +16,17 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
       <!-- Logo -->
-      <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
-      <div id="logo-letras" class="display-6"><strong>Bolso Controlado</strong></div>
+      <div style="display: flex; align-items: center;">
+        <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
+        <div id="logo-letras" class="display-6" style="margin-left: 10px;"><strong>Bolso Controlado</strong></div>
+    </div>
       <!-- Links de navegação -->
-      <ul class="nav justify-content-end ">
+      <ul class="nav justify-content-end">
         <a style="color:black"class="nav-link" href="{% url 'expense_list' %}">Suas despesas</a>
           <li class="nav-item">
           <a style="color:black"class="nav-link" href="{% url 'calc_list' %}">Calculadoras</a>
+          <li class="nav-item">
+            <a style="color:black"class="nav-link" href="{% url 'about' %}">Sobre</a>
           <li class="nav-item">
             <!-- Formulário de logout -->
             <form action="{% url 'logout' %}" method="post">
@@ -46,28 +50,24 @@
 <div class="container mt-5">
   <div class="row">
       <div class="col-md-6 mb-3">
-          <div class="card mx-auto">
-            <div class="card-body text-center">
-                <!-- Imagem da Calculadora Financeira -->
-                <a href="{% url 'expense_list' %}">
-                  <img src="{% static 'img/dinheiro.png'%}" alt="Planejamento financeiro" class="card-img-top">
-                  <h5 style="font-size: 17px;" class="card-title"><strong>Suas despesas</strong></h5>
-                  <h6 style="font-size: 15px;" class="card-text">Alcance seus objetivos financeiros com planejamento</h6>
-              </a>
-              </div>
+        <a href="{% url 'expense_list' %}" class="card mx-auto" style="text-decoration: none;">
+          <div class="card-body text-center">
+              <!-- Imagem da Calculadora Financeira -->
+              <img src="{% static 'img/dinheiro.png'%}" alt="Planejamento financeiro" class="card-img-top" style="width: 60%;">
+              <h5 style="font-size: 20px;" class="card-title"><strong>Suas despesas</strong></h5>
+              <h6 style="font-size: 15px;" class="card-text">Alcance seus objetivos financeiros com planejamento</h6>
           </div>
+      </a>
       </div>
       <div class="col-md-6 mb-3">
-          <div class="card mx-auto">
-            <div class="card-body text-center">
-                <!-- Imagem de Planejamento Financeiro -->
-                <a href="{% url 'calc_list' %}">
-                  <img src="{% static 'img/img-calc.png'%}" alt="Calculadora financeira" class="card-img-top">
-                  <h5 style="font-size: 17px;" class="card-title"><strong>Calculadora financeira</strong></h5>
-                  <h6 style="font-size: 15px;" class="card-text">Calcule suas prestações, empréstimos e aplicações</h6>
-              </a>
-              </div>
+        <a href="{% url 'calc_list' %}" class="card mx-auto" style="text-decoration: none;">
+          <div class="card-body text-center">
+              <!-- Imagem de Planejamento Financeiro -->
+              <img src="{% static 'img/img-calc.png'%}" alt="Calculadora financeira" class="card-img-top" style="width: 50%;">
+              <h5 style="font-size: 20px;" class="card-title"><strong>Calculadora financeira</strong></h5>
+              <h6 style="font-size: 15px;" class="card-text">Calcule suas prestações, empréstimos e aplicações</h6>
           </div>
+      </a>
       </div>
   </div>
   <div class="row justify-content-center">
@@ -75,7 +75,7 @@
           <div class="card mx-auto">
               <div class="card-body text-center">
                 <!-- Imagem de Orçamentos -->
-                <img src="{% static 'img/luz.png'%}" alt="Orçamentos" class="card-img-top">
+                <img src="{% static 'img/luz.png'%}" alt="Orçamentos" class="card-img-top" style="width: 60%;">
                   <h5 style="font-size: 17px;" class="card-title"><strong>Orçamentos</strong></h5>
                   <p style="font-size: 15px;" class="card-text">Acompanhe seus ganhos e gastos</p>
               </div>
@@ -85,7 +85,7 @@
           <div class="card mx-auto">
               <div class="card-body text-center">
                 <!-- Imagem de Investimentos -->
-                <img src="{% static 'img/grafico.png'%}" alt="Investimentos" class="card-img-top">
+                <img src="{% static 'img/grafico.png'%}" alt="Investimentos" class="card-img-top" style="width: 50%;">
                   <h5 style="font-size: 17px;" class="card-title"><strong>Investimentos</strong></h5>
                   <p style="font-size: 15px;" class="card-text">Maximize os retornos com investimentos inteligentes</p>
               </div>
