@@ -11,7 +11,7 @@
     <script src="{% static 'js/calculadora.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/calc.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/calculator.css' %}">
-    <title>Calculadora</title>
+    <title>Calculadora Básica</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -27,10 +27,6 @@
                 <!-- Link para a lista de calculadoras (página atual) -->
                 <a style="color:black" class="nav-link" href="{% url 'calc_list' %}">Calculadoras</a>
             <li class="nav-item">
-                <!-- Link para a página de investimento -->
-                <a style="color:black" class="nav-link active" aria-current="page" href="#">Investimento</a>
-            </li>
-            <li class="nav-item">
                 <!-- Formulário para logout -->
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
@@ -44,7 +40,7 @@
 {% csrf_token %}
 <!-- Banner -->
 <div id="banner">
-    <h1 id="cor-letra-banner">Calculadora</h1>
+    <h1 id="cor-letra-banner">Calculadora Básica</h1>
     <p id="cor-letra-banner">Faça seus cálculos aqui</p>
 </div>
 
@@ -87,8 +83,7 @@
     <ul class="nav col-md-4 justify-content-center">
         <!-- Links de navegação adicionais -->
         <li class="nav-item"><a href="{% url 'welcome' %}" class="nav-link px-2 text-muted">Início</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Sobre</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Dev</a></li>
+        <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-muted">Sobre</a></li>
     </ul>
     <!-- Informações de direitos autorais -->
     <p class="col-md-4 mb-0 text-muted">© 2024 Projeto Integrador Univesp</p>

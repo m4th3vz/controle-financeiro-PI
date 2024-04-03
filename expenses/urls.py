@@ -36,4 +36,6 @@ urlpatterns = [
     path('installment-calculator/', views.calc_installment, name='calc_installment'),
     # URL para a lista de calculadoras
     path('calculator_list/', views.calc_list, name='calc_list'),
+    # URL para a página sobre
+    path('about/', views.about, name='about'),
 ]

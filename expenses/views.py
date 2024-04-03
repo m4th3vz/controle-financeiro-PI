@@ -109,6 +109,11 @@ def register(request):
 def welcome(request):
     return render(request, 'welcome.html')
 
+# Página de sobre
+@login_required
+def about(request):
+    return render(request, 'about.html')
+
 # Página da lista de calculadoras
 @login_required
 def calc_list(request):

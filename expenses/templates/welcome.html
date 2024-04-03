@@ -1,137 +1,128 @@
-{% load static %} <!-- Carrega arquivos estáticos -->
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres -->
-    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Define a escala inicial para dispositivos móveis -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> <!-- Link para o Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/welcome.css' %}"> <!-- Link para o arquivo de estilos personalizado -->
-    <title>Boas-vindas</title> <!-- Título da página -->
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/welcome.css' %}">
+    <title>Boas-vindas</title>
 </head>
+
 <body>
-  <!-- Barra de navegação -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-          <!-- Logo do site -->
-          <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
-          <div id="logo-letras" class="display-6"><strong>Bolso Controlado</strong></div>   
-          <!-- Links de navegação -->
-          <ul class="nav justify-content-end ">
-            <a style="color:black"class="nav-link" href="{% url 'expense_list' %}">Suas despesas</a>
-              <li class="nav-item">
-              <a style="color:black"class="nav-link" href="{% url 'calc_list' %}">Calculadoras</a>
-              <li class="nav-item">
-                  <a style="color:black"class="nav-link active" aria-current="page" href="#">Investimento</a> 
-              </li>
-              <li class="nav-item">
-                <form action="{% url 'logout' %}" method="post">
-                  {% csrf_token %}
-                  <button type="submit" style="color: black; background-color: transparent; border: none; cursor: pointer;" class="nav-link">Logout</button>
-              </form>
-              </li>
-          </ul>
-      </div>
+<!-- Barra de navegação -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+      <!-- Logo -->
+      <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
+      <div id="logo-letras" class="display-6"><strong>Bolso Controlado</strong></div>
+      <!-- Links de navegação -->
+      <ul class="nav justify-content-end ">
+        <a style="color:black"class="nav-link" href="{% url 'expense_list' %}">Suas despesas</a>
+          <li class="nav-item">
+          <a style="color:black"class="nav-link" href="{% url 'calc_list' %}">Calculadoras</a>
+          <li class="nav-item">
+            <!-- Formulário de logout -->
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" style="color: black; background-color: transparent; border: none; cursor: pointer;" class="nav-link">Logout</button>
+          </form>
+          </li>
+      </ul>
   </div>
-  </nav>
-  
-  <!-- Formulário de login ou logout -->
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }} <!-- Renderiza o formulário de acordo com o modelo definido -->
-  </form>
+</div>
+</nav>
 
-  <!-- Banner de boas-vindas -->
-  <div id ="banner">
-     <h1 style="font-size: 55px; margin-bottom: -10px;" id="cor-letra-banner"><strong>Bem-vindo ao nosso site</strong></h1>
-     <p style="font-size: 55px;" id="cor-letra-banner"><strong>de finanças pessoais</strong></p>
-     <p style="font-size: 23px;" id="cor-letra-banner">Pequenas economias, grandes mudanças: seu futuro financeiro começa agora.</p>
-  </div>
-  
-  <!-- Cards com informações sobre calculadora financeira e planejamento financeiro -->
-  <div class="card">
-    <div class="card-body">
-       <img src="{% static 'img/img-calc.png'%}" alt="Calculadora financeira" class="card-img-top">
-       <h5 class="card-title" style="float: right;">Calculadora financeira</h5>
-       <h6 class="card-text" style="float: right ;">Calcule suas prestações, empréstimos e aplicações</h6>
-    </div>
-  </div>
-  
-  <!-- Seção "Comece aqui!" -->
-  <div class="col-md-6">
-    <h2 style="padding: 0 250px; font-size: 55px;"><strong>Comece aqui!</strong></h2>
-    <p><center>Explore nossas ferramentas e recursos</center></p>
-  </div>
-  
-  <!-- Card com informações sobre planejamento financeiro -->
-  <div class="card">
-    <div class="card-body">
-     <img src="{% static 'img/dinheiro.png'%}" alt="Planejamento financeiro" class="card-img-top">
-     <h5 class="card-title" style="float: right;">Planejamento financeiro</h5>
-     <h6 class="card-text" style="float: right;">Alcance seus objetivos financeiros com planejamento</h6>
-    </div>
-  </div>
-  
-  <!-- Seção com dicas financeiras -->
-  <div class="divisor-horizontal"></div>
-  <section id="comece-aqui" style="display: flex; justify-content: space-between;">
-    <h2 style="margin-top: 350px; padding: 0 230px; font-size: 55px;"><strong>Dicas financeiras</strong></h2>
-    <div>
-      <!-- Card com dicas sobre orçamentos -->
-      <div class="circular-card">
-        <center><img src="{% static 'img/luz.png'%}" alt="Imagem do card"  class="card-img-top" style="border-radius: 50%;"></center>
-        <div class="card-content"></div>
-      </div>
-      <h3 style="margin-left:5%;">Orçamentos</h3>
-      <p style="margin-left: -2px;">Acompanhe seus ganhos</p>
-      <p style="margin-top: -15px; margin-left: 60px;">e gastos</p>
-    </div>
-    
-    <div>
-      <!-- Card com dicas sobre investimentos -->
-      <div class="circular-card">
-        <center><img src="{% static 'img/grafico.png'%}" alt="Imagem do card" class="card-img-top"></center>
-        <div class="card-content"></div>
-      </div>
-      <h3 style="margin-left:2%;">Investimentos</h3>
-      <p style="margin-left: -60px;">Maximize os retornos com investimentos</p>
-      <p style="margin-top: -15px; margin-left: 50px;">inteligentes</p>
-    </div>
-  </section>
-  
-  <!-- Seção "Sobre o Bolso Controlado" -->
-    <center>
-      <h1 style="color: var(--fundo-banner); margin-top:5%; margin-bottom:2%; font-size: 55px;"><strong>Sobre o Bolso Controlado</strong></h1>
-    </center>
-
-    <p style="padding: 0 450px; margin-bottom: 20px; font-size: 22px; color: black;">
-      O Bolso Controlado é um site de finanças pessoais que nasceu de uma iniciativa universitária. Nosso objetivo principal é fornecer uma plataforma acessível e intuitiva para ajudar as pessoas a gerenciarem melhor suas finanças pessoais.</p>
-      
-      <p style="padding: 0 450px; margin-bottom: 20px; font-size: 22px; color: black;">
-      Em um mundo onde o controle financeiro é essencial, queremos oferecer uma ferramenta que simplifique o processo de acompanhamento de despesas, economias e metas financeiras. Com o Bolso Controlado, os usuários podem monitorar seus gastos, estabelecer orçamentos, definir metas de economia.</p>
-      
-      <p style="padding: 0 450px; margin-bottom: 20px; font-size: 22px; color: black;">
-      Nosso compromisso vai além de apenas fornecer uma plataforma; queremos capacitar as pessoas com conhecimento financeiro e ajudá-las a tomar decisões informadas sobre seu dinheiro. Com recursos educacionais e dicas práticas, buscamos criar uma comunidade onde todos possam aprender e crescer juntos financeiramente.</p>
-      
-      <p style="padding: 0 450px; margin-bottom: 20px; font-size: 22px; color: black;">
-      Estamos entusiasmados em embarcar nesta jornada com você e estamos aqui para ajudar a colocar seu bolso sob controle, para que você possa alcançar seus objetivos financeiros com confiança e tranquilidade.</p>
-
-<!-- Este bloco define um contêiner (div) com estilo flexível -->
-<div style="display: flex; flex-direction: column; align-items: center;">
-  <!-- Uma imagem dentro do contêiner -->
-  <img width="450px" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
+<!-- Banner -->
+<div id ="banner">
+  <h1 style="font-size: 55px; margin-bottom: -10px;" id="cor-letra-banner"><strong>Bem-vindo ao nosso site</strong></h1>
+  <p style="font-size: 55px;" id="cor-letra-banner"><strong>de finanças pessoais</strong></p>
+  <p style="font-size: 23px;" id="cor-letra-banner">Pequenas economias, grandes mudanças: seu futuro financeiro começa agora.</p>
 </div>
 
-<!-- Footer (rodapé) -->
+<!-- Cards de funcionalidades -->
+<div class="container mt-5">
+  <div class="row">
+      <div class="col-md-6 mb-3">
+          <div class="card mx-auto">
+            <div class="card-body text-center">
+                <!-- Imagem da Calculadora Financeira -->
+                <a href="{% url 'expense_list' %}">
+                  <img src="{% static 'img/dinheiro.png'%}" alt="Planejamento financeiro" class="card-img-top">
+                  <h5 style="font-size: 17px;" class="card-title"><strong>Suas despesas</strong></h5>
+                  <h6 style="font-size: 15px;" class="card-text">Alcance seus objetivos financeiros com planejamento</h6>
+              </a>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 mb-3">
+          <div class="card mx-auto">
+            <div class="card-body text-center">
+                <!-- Imagem de Planejamento Financeiro -->
+                <a href="{% url 'calc_list' %}">
+                  <img src="{% static 'img/img-calc.png'%}" alt="Calculadora financeira" class="card-img-top">
+                  <h5 style="font-size: 17px;" class="card-title"><strong>Calculadora financeira</strong></h5>
+                  <h6 style="font-size: 15px;" class="card-text">Calcule suas prestações, empréstimos e aplicações</h6>
+              </a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="row justify-content-center">
+      <div class="col-md-6 mb-3">
+          <div class="card mx-auto">
+              <div class="card-body text-center">
+                <!-- Imagem de Orçamentos -->
+                <img src="{% static 'img/luz.png'%}" alt="Orçamentos" class="card-img-top">
+                  <h5 style="font-size: 17px;" class="card-title"><strong>Orçamentos</strong></h5>
+                  <p style="font-size: 15px;" class="card-text">Acompanhe seus ganhos e gastos</p>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 mb-3">
+          <div class="card mx-auto">
+              <div class="card-body text-center">
+                <!-- Imagem de Investimentos -->
+                <img src="{% static 'img/grafico.png'%}" alt="Investimentos" class="card-img-top">
+                  <h5 style="font-size: 17px;" class="card-title"><strong>Investimentos</strong></h5>
+                  <p style="font-size: 15px;" class="card-text">Maximize os retornos com investimentos inteligentes</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Divisor horizontal -->
+<div class="divisor-horizontal"></div>
+
+<!-- Seção "Sobre o Bolso Controlado" -->
+<div class="container mt-5">
+    <h1 class="text-center" style="color: var(--fundo-banner); margin-top:10%; margin-bottom:2%; font-size: 45px;">Sobre o Bolso Controlado</h1>
+    <p style= "margin-bottom:5%; font-size: 18px">
+        <!-- Texto sobre o Bolso Controlado -->
+        O Bolso Controlado é um site de finanças pessoais que nasceu de uma iniciativa universitária.
+        Nosso objetivo principal é fornecer uma plataforma acessível e intuitiva para ajudar as pessoas
+        a gerenciarem melhor suas finanças pessoais.
+        Em um mundo onde o controle financeiro é essencial,
+        queremos oferecer uma ferramenta que simplifique o processo de acompanhamento de despesas, economias e metas financeiras. Com o Bolso Controlado, os usuários podem monitorar seus gastos, estabelecer orçamentos, definir metas de economia.
+        Nosso compromisso vai além de apenas fornecer uma plataforma; queremos capacitar as pessoas com conhecimento financeiro
+        e ajudá-las a tomar decisões informadas sobre seu dinheiro. Com recursos educacionais e dicas práticas, buscamos criar
+        uma comunidade onde todos possam aprender e crescer juntos financeiramente.
+        Estamos entusiasmados em embarcar nesta jornada com você e estamos aqui para ajudar a colocar seu bolso sob controle,
+        para que você possa alcançar seus objetivos financeiros com confiança e tranquilidade.
+    </p>
+</div>
+
+<!-- Rodapé -->
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-<!-- Lista de links -->
-<ul class="nav col-md-4 justify-content-center">
-  <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Início</a></li>
-  <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Sobre</a></li>
-  <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Dev</a></li>
-</ul>
-<!-- Texto de direitos autorais -->
-<p class="col-md-4 mb-0 text-muted">© 2024 Projeto Integrador Univesp</p>
-</footer>
+  <ul class="nav col-md-4 justify-content-center">
+    <!-- Links do rodapé -->
+    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Início</a></li>
+    <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-muted">Sobre</a></li>
+  </ul>
+  <!-- Copyright -->
+  <p class="col-md-4 mb-0 text-muted">© 2024 Projeto Integrador Univesp</p>
 </body>
 </html>
