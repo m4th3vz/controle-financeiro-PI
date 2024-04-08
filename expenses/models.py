@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# Este arquivo é usado para definir a estrutura do banco de dados, ou seja, os modelos de dados que serão usados em seu aplicativo.
+# Cada classe definida neste arquivo representa uma tabela no banco de dados, e os atributos dessas classes representam as colunas dessa tabela.
+# Os modelos definidos em models.py são independentes de qualquer forma de entrada de dados. Eles apenas definem como os dados serão armazenados e organizados no banco de dados.
+
 # Defina suas opções de categoria
 CATEGORY_CHOICES = (
     ('Casa', 'Casa'),

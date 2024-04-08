@@ -3,6 +3,8 @@ from . import views
 from .views import CustomLoginView
 from django.contrib.auth import views as auth_views
 
+# Este arquivo organiza a estrutura de URL do aplicativo.
+
 urlpatterns = [
     # URL para listar as despesas
     path('', views.expense_list, name='expense_list'),

@@ -7,6 +7,8 @@ from django.db.models import Sum
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 
+# As views podem realizar uma variedade de tarefas, como recuperar dados do banco de dados, validar dados de entrada do usuário, realizar cálculos e renderizar templates.
+
 # Lista de despesas
 @login_required
 def expense_list(request):

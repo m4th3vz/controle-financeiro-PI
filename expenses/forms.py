@@ -3,6 +3,10 @@ from .models import Expense
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+# Este arquivo é usado para criar e definir formulários HTML, que são usados para coletar e validar dados de entrada do usuário.
+# Os formulários definidos neste arquivo podem ser usados para criar e atualizar objetos do banco de dados definidos em models.py.
+# Os formulários podem incluir campos extras, validações personalizadas e lógica de processamento de dados para garantir que os dados inseridos pelo usuário sejam válidos antes de serem salvos no banco de dados.
+
 # Definição de um widget personalizado para o campo de data
 class DateInput(forms.DateInput):
     input_type = 'date'
