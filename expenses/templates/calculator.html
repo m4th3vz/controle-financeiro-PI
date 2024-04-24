@@ -8,11 +8,121 @@
     <!-- Importação do Bootstrap 5 via CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Link para o arquivo de estilos personalizado -->
-    <script src="{% static 'js/calculadora.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/calc.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/calculator.css' %}">
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <title>Calculadora Básica</title>
+
+<style>
+    :root {
+        --obs: red;
+        --letras-nav-bar-preto: #000000;
+        --fundo-banner: #7E57C2;
+        --letras-banner: #ffffff;
+        --letras-nav-bar-azul: #3E92CC;
+        --cor-input: #cfcfcfcf;
+    }
+    
+    #logo-letras {
+        color: var(--letras-nav-bar-azul);
+    }
+    
+    #logo-img {
+        width: 5rem;
+        height: 5rem;
+    }
+    
+    #menu-link-color {
+        color: var(--letras-nav-bar-preto);
+    }
+    
+    #banner {
+        background-color: var(--fundo-banner);
+        padding: 5rem;
+        padding-bottom: 5rem;
+        text-align: center;
+    }
+    
+    #cor-letra-banner {
+        color: var(--letras-banner);
+    }
+    
+    #centralizar {
+        text-align: center;
+    }
+    
+    /* Container para posicionar elementos relativos */
+.container {
+    position: relative;
+}
+
+/* Estilizando o visor do resultado */
+#resultado {
+    position: absolute; /* Posicionamento absoluto para sobrepor outros elementos */
+    top: -60px; /* Posiciona o visor acima da calculadora */
+    width: 98%;
+    height: 50px;
+    font-size: 24px;
+    font-family: Arial, sans-serif; /* Fonte do texto */
+    text-align: center; /* Alinhamento do texto */
+    background-color: #AECAE7; /* Cor de fundo do visor */
+    border: 1px solid #74a3c9; /* Borda do visor */
+    border-radius: 5px; /* Borda arredondada */
+    box-sizing: border-box; /* Garante que a altura do visor não adicionará espaço extra */
+    padding: 5px; /* Espaçamento interno do visor */
+}
+
+/* Estilizando a tabela da calculadora */
+table {
+    margin: 0 auto; /* Centraliza a tabela horizontalmente */
+    margin-top: 80px; /* Adiciona um espaço entre o visor e a calculadora */
+}
+
+/* Estilizando os botões da calculadora */
+.botao {
+    width: 60px; /* Largura dos botões */
+    height: 60px; /* Altura dos botões */
+    font-size: 24px; /* Tamanho da fonte dos botões */
+    font-family: Arial, sans-serif; /* Fonte do texto */
+    margin: 5px; /* Espaçamento entre os botões */
+    background-color: #AECAE7; /* Cor de fundo dos botões */
+    border: 1px solid #74a3c9; /* Borda dos botões */
+    border-radius: 5px; /* Borda arredondada dos botões */
+    cursor: pointer; /* Cursor do mouse ao passar sobre os botões */
+    transition: background-color 0.3s ease; /* Transição suave da cor de fundo dos botões */
+}
+
+/* Efeito de hover nos botões */
+.botao:hover {
+    background-color: #74a3c9; /* Cor de fundo dos botões ao passar o mouse */
+}
+</style>
+
+<script>
+    function insert(num) {
+        var numero = document.getElementById('resultado').innerHTML;
+        document.getElementById('resultado').innerHTML = numero + num;
+    }
+    
+    function clean() {
+        document.getElementById('resultado').innerHTML = "";
+    }
+    
+    function back() {
+        var resultado = document.getElementById('resultado').innerHTML;
+        document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length - 1);
+    }
+    
+    function calcular() {
+        var resultado = document.getElementById('resultado').innerHTML;
+        if (resultado) {
+            document.getElementById('resultado').innerHTML = eval(resultado);
+        } else {
+            document.getElementById('resultado').innerHTML = "Nada..."
+        }
+    }    
+</script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">

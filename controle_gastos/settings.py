@@ -80,20 +80,12 @@ WSGI_APPLICATION = "controle_gastos.wsgi.application"
 # python manage.py makemigrations
 # python manage.py migrate
 
-# Configuração do MySQL
+# Configuração do SQLite3
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'projetointegrador_db',
-        'USER': 'pi_univesp',
-        'PASSWORD': 'pi_univesp_grupo019_2211017',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-        'charset': 'utf8mb4',
-        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        }
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
