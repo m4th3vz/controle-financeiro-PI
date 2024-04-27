@@ -1,18 +1,20 @@
 from .models import Expense, UserProfile
 from .forms import ExpenseForm, UserRegistrationForm, LoanCalculatorForm, SimpleInterestCalculatorForm, CompoundInterestCalculatorForm, InvestmentCalculatorForm, InstallmentCalculatorForm
 from decimal import Decimal, InvalidOperation
+import datetime
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Sum
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
 # As views podem realizar uma variedade de tarefas, como recuperar dados do banco de dados, validar dados de entrada do usuário, realizar cálculos e renderizar templates.
 
 # Lista de despesas
 @login_required
-def expense_list(request):
+def expense_list(request, year=None, month=None):
     if request.method == 'POST':
         salary = request.POST.get('salary')
 
@@ -31,19 +33,26 @@ def expense_list(request):
         user_profile.salary = salary
         user_profile.save()
 
-    expenses = Expense.objects.filter(user=request.user)
+    if year is None or month is None:
+        # Se nenhum ano ou mês for fornecido, use o ano e mês atuais
+        current_date = datetime.datetime.now()
+        year = current_date.year
+        month = current_date.month
+
+    expenses = Expense.objects.filter(user=request.user, date__year=year, date__month=month)
+
     total_expenses = expenses.aggregate(total=Sum('amount'))['total'] or 0
-    # Arredonda o total de despesas para 2 casas decimais
     total_expenses = round(total_expenses, 2)
+
     salary = UserProfile.objects.get(user=request.user).salary if UserProfile.objects.filter(user=request.user).exists() else None
     
     # Calcula a diferença entre a renda mensal e o total das despesas
     difference = salary - total_expenses if salary is not None else None
 
     # Calcular a soma das despesas para cada categoria
-    expenses_by_category = Expense.objects.filter(user=request.user).values('expense_category').annotate(total_amount=Sum('amount'))
+    expenses_by_category = Expense.objects.filter(user=request.user, date__year=year, date__month=month).values('expense_category').annotate(total_amount=Sum('amount'))
     
-    return render(request, 'expenses/expense_list.html', {'expenses': expenses, 'total_expenses': total_expenses, 'salary': salary, 'difference': difference, 'expenses_by_category': expenses_by_category})
+    return render(request, 'expenses/expense_list.html', {'expenses': expenses, 'total_expenses': total_expenses, 'salary': salary, 'difference': difference, 'expenses_by_category': expenses_by_category, 'year': year, 'month': month})
 
 # Adicionar despesa
 @login_required
@@ -92,10 +101,11 @@ def calculator(request):
 # Personalização da página de login
 class CustomLoginView(LoginView):
     template_name = 'login.html'
+    authentication_form = AuthenticationForm
 
     def get_success_url(self):
         return reverse_lazy('welcome')
-
+    
 # Página de registro de usuário
 def register(request):
     if request.method == 'POST':

@@ -94,6 +94,7 @@
 </div>
 <div class="text-center">
     <h2>Tem certeza que deseja excluir todas as despesas?</h2>
+    <p style="color: red">Todas as despesas de todos os mêses serão apagadas!</p>
     <!-- Formulário para confirmar a exclusão de todas as despesas -->
     <form action="{% url 'delete_all_expenses' %}" method="post">
         <!-- CSRF Token para proteção contra Cross-Site Request Forgery -->

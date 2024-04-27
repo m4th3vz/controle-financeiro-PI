@@ -157,6 +157,15 @@
     </table>
 </div>
 
+<div class="text-center" style="margin-bottom:3%">
+{% if year and month %}
+    <p>
+        <a href="{% url 'expense_list_month' year=year month=month|add:'-1' %}">&lt; Mês Anterior</a> |
+        <a href="{% url 'expense_list_month' year=year month=month|add:'1' %}">Próximo Mês &gt;</a>
+    </p>
+{% endif %}
+</div>
+
 <div class="text-center">
     <!-- Botão para adicionar uma nova despesa -->
     <button class="btn btn-warning" onclick="window.location.href='{% url 'add_expense' %}'">Adicionar Despesa</button>

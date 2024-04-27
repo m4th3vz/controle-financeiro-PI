@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from .views import CustomLoginView
 from django.contrib.auth import views as auth_views
+from .views import expense_list
 
 # Este arquivo organiza a estrutura de URL do aplicativo.
 
@@ -40,4 +41,6 @@ urlpatterns = [
     path('calculator_list/', views.calc_list, name='calc_list'),
     # URL para a página sobre
     path('about/', views.about, name='about'),
+    # URL dinâmica
+    path('expenses/<int:year>/<int:month>/', expense_list, name='expense_list_month'),
 ]
