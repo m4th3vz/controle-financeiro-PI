@@ -52,27 +52,32 @@
             <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
             <div id="logo-letras" class="display-6" style="margin-left: 10px;"><strong>Bolso Controlado</strong></div>
         </div>
-        <!-- Links de navegação -->
-        <ul class="nav justify-content-end ">
-            <ul class="nav justify-content-end ">
-                <!-- Link para a página inicial -->
-                <a style="color:black"class="nav-link" href="{% url 'welcome' %}">Bem-vindo</a>
-                  <li class="nav-item">
-            <!-- Link para a lista de despesas -->
-            <a style="color:black" class="nav-link" href="{% url 'expense_list' %}">Suas despesas</a>
-            <li class="nav-item">
-                <!-- Link para a lista de calculadoras (página atual) -->
-                <a style="color:black" class="nav-link" href="{% url 'calc_list' %}">Calculadoras</a>
-            <li class="nav-item">
-                <!-- Formulário para logout -->
-                <form action="{% url 'logout' %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" style="color: black; background-color: transparent; border: none; cursor: pointer;" class="nav-link">Logout</button>
-                </form>
-            </li>
+        <!-- Botão dropdown com links de navegação -->
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" style="color: black; background-color: #FFCA2C; border-color: #FFCA2C;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Menu de Navegação
+        </button>
+        <ul class="dropdown-menu" style="text-align: center;">
+          <li><a class="dropdown-item" href="{% url 'welcome' %}">Bem-vindo</a></li>
+          <li><a class="dropdown-item" href="{% url 'expense_list' %}">Suas despesas</a></li>
+          <li><a class="dropdown-item" href="{% url 'calc_list' %}">Calculadoras</a></li>
+          <li><a class="dropdown-item" href="{% url 'about' %}">Sobre</a></li>
+          <li>
+            <li><hr class="dropdown-divider"></li>
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="dropdown-item">Logout</button>
+            </form>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li class="nav-item" style="list-style-type: none; text-align: center;">
+            <span style="color: #626463; font-size: 18px;" class="nav-link">{{ user.username }}</span>
+          </li>
         </ul>
+      </div>
     </div>
-</nav>
+  </div>
+  </nav>
     <!-- Banner -->
     <div id ="banner">
        <h1 id="cor-letra-banner">Adicionar Despesa</h1>
@@ -100,5 +105,9 @@
         <!-- Informação de direitos autorais -->
         <p class="col-md-4 mb-0 text-muted">© 2024 Projeto Integrador Univesp</p>
     </footer>
+    <!-- Botão dropdown -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
 </body>
 </html>
