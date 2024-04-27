@@ -49,6 +49,14 @@ body {
                         </div>
                         <!-- Título -->
                         <h1 class="text-center"><strong>Crie sua conta!</strong></h1>
+                        <!-- Exibe mensagens de erro -->
+                        {% if messages %}
+                            <ul class="alert alert-danger">
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                         <!-- Formulário de registro -->
                         <form method="post">
                             {% csrf_token %} <!-- Token CSRF para segurança -->

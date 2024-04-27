@@ -4,6 +4,7 @@ from decimal import Decimal, InvalidOperation
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Sum
+from django.contrib import messages
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 
@@ -102,6 +103,11 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect('login')
+        else:
+            # Adiciona mensagens de erro ao contexto
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
     else:
         form = UserRegistrationForm()
     return render(request, 'register.html', {'form': form})
