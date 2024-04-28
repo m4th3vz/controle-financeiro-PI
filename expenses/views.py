@@ -10,6 +10,8 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
+from datetime import datetime, timedelta
+
 # As views podem realizar uma variedade de tarefas, como recuperar dados do banco de dados, validar dados de entrada do usuário, realizar cálculos e renderizar templates.
 
 # Lista de despesas
@@ -35,9 +37,27 @@ def expense_list(request, year=None, month=None):
 
     if year is None or month is None:
         # Se nenhum ano ou mês for fornecido, use o ano e mês atuais
-        current_date = datetime.datetime.now()
+        current_date = datetime.now()
         year = current_date.year
         month = current_date.month
+
+    # Converte ano e mês para o tipo inteiro
+    year = int(year)
+    month = int(month)
+
+    # Lógica para cálculo do mês anterior
+    prev_month = month - 1
+    prev_year = year
+    if prev_month == 0:
+        prev_month = 12
+        prev_year -= 1
+
+    # Lógica para cálculo do próximo mês
+    next_month = month + 1
+    next_year = year
+    if next_month == 13:
+        next_month = 1
+        next_year += 1
 
     expenses = Expense.objects.filter(user=request.user, date__year=year, date__month=month)
 
@@ -52,7 +72,7 @@ def expense_list(request, year=None, month=None):
     # Calcular a soma das despesas para cada categoria
     expenses_by_category = Expense.objects.filter(user=request.user, date__year=year, date__month=month).values('expense_category').annotate(total_amount=Sum('amount'))
     
-    return render(request, 'expenses/expense_list.html', {'expenses': expenses, 'total_expenses': total_expenses, 'salary': salary, 'difference': difference, 'expenses_by_category': expenses_by_category, 'year': year, 'month': month})
+    return render(request, 'expenses/expense_list.html', {'expenses': expenses, 'total_expenses': total_expenses, 'salary': salary, 'difference': difference, 'expenses_by_category': expenses_by_category, 'year': year, 'month': month, 'prev_year': prev_year, 'prev_month': prev_month, 'next_year': next_year, 'next_month': next_month})
 
 # Adicionar despesa
 @login_required

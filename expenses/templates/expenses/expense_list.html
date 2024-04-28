@@ -119,10 +119,13 @@
 
     <!-- Exibe a diferença -->
     {% if difference is not None %}
-    <p>Renda mensal após pagamento das despesas: R$ {{ difference }}</p>
+    {% if difference >= 0 %}
+        <p style="color: green;">Renda mensal após pagamento das despesas: R$ {{ difference }}</p>
+    {% else %}
+        <p style="color: red;">Renda mensal após pagamento das despesas: <span style="color: red;">R$ {{ difference }}</span> <span style="color: red;">(Renda negativa)</span></p>
     {% endif %}
+{% endif %}
 </div>
-
 
 <h3 class="text-center" style="padding-top: 50px;">Lista de Despesas</h3>
     <!-- Tabela da lista de despesas -->
@@ -158,13 +161,13 @@
 </div>
 
 <div class="text-center" style="margin-bottom:3%">
-{% if year and month %}
-    <p>
-        <a href="{% url 'expense_list_month' year=year month=month|add:'-1' %}">&lt; Mês Anterior</a> |
-        <a href="{% url 'expense_list_month' year=year month=month|add:'1' %}">Próximo Mês &gt;</a>
-    </p>
-{% endif %}
-</div>
+    {% if year and month %}
+        <p>
+            <a href="{% if month > 1 %}{% url 'expense_list_month' year=year month=month|add:'-1' %}{% else %}{% url 'expense_list_month' year=year|add:'-1' month=12 %}{% endif %}">&lt; Mês Anterior</a> |
+            <a href="{% if month < 12 %}{% url 'expense_list_month' year=year month=month|add:'1' %}{% else %}{% url 'expense_list_month' year=year|add:'1' month=1 %}{% endif %}">Próximo Mês &gt;</a>
+        </p>
+    {% endif %}
+    </div>    
 
 <div class="text-center">
     <!-- Botão para adicionar uma nova despesa -->
