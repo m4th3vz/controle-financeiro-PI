@@ -80,10 +80,24 @@ def add_expense(request):
     if request.method == 'POST':
         form = ExpenseForm(request.POST)
         if form.is_valid():
-            # Salva a despesa associada ao usuário logado
             expense = form.save(commit=False)
             expense.user = request.user
             expense.save()
+
+            # Se a duração da despesa for maior que 1, crie despesas para cada mês adicional
+            for i in range(expense.duration_months - 1):
+                # Clona a despesa original e ajusta a data
+                new_expense = Expense.objects.create(
+                    expense_category=expense.expense_category,
+                    title=expense.title,
+                    amount=expense.amount,
+                    date=expense.date + timedelta(days=30 * (i + 1)),  # Adiciona 30 dias para cada mês adicional
+                    payment_method=expense.payment_method,
+                    observation=expense.observation,
+                    user=request.user,
+                    duration_months=1  # Define a duração como 1 para cada despesa adicional
+                )
+
             return redirect('expense_list')
     else:
         form = ExpenseForm()

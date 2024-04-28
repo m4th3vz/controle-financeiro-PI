@@ -49,9 +49,11 @@ class Expense(models.Model):
     # Usuário associado à despesa (chave estrangeira)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # Forma de pagamento
-    payment_method = models.CharField(max_length=20, choices=PAYMENT_CHOICES, verbose_name='Forma de Pagamento')
+    payment_method = models.CharField(blank=True, max_length=20, choices=PAYMENT_CHOICES, verbose_name='Forma de Pagamento (Opcional)', default='Dinheiro')
     # Observação sobre a despesa
     observation = models.TextField(blank=True, verbose_name='Observação', max_length=60)
+    # Duração da despesa em meses
+    duration_months = models.IntegerField(verbose_name='Duração em Meses', default=1)
 
     class Meta:
         # Metadados para configurar o nome da tabela no banco de dados
