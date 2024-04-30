@@ -43,4 +43,6 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     # URL dinâmica
     path('expenses/<int:year>/<int:month>/', expense_list, name='expense_list_month'),
+    # URL para a página de notícias
+    path('news/', views.news, name='news'),
 ]

@@ -18,7 +18,7 @@ class ExpenseForm(forms.ModelForm):
     # Campo de informações adicionais sobre o título
     title = forms.CharField(label='Título',max_length=20)
     # Campo para a duração da despesa em meses
-    duration_months = forms.IntegerField(label='Deseja adicionar sua despesa por quantos meses?', min_value=1, initial=1)
+    duration_months = forms.IntegerField(label='Deseja adicionar esta despesa por quantos meses?', min_value=1, initial=1, max_value=48)
     # Campo de informações adicionais sobre o gasto
     observation = forms.CharField(
         label='Informações adicionais sobre este gasto (Opcional):',
@@ -41,7 +41,7 @@ class ExpenseForm(forms.ModelForm):
 
 # Formulário para registro de usuário
 class UserRegistrationForm(UserCreationForm):
-    username = forms.CharField(label='Usuário', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu nome de usuário', 'autocomplete': 'username', 'id': 'username'}), help_text='• Máximo de 150 caracteres.<br>• Letras, números e @/./+/-/_ apenas.')
+    username = forms.CharField(label='Usuário', max_length=20, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite seu nome de usuário', 'autocomplete': 'username', 'id': 'username'}), help_text='• Máximo de 20 caracteres.<br>• Letras, números e @/./+/-/_ apenas.')
     password1 = forms.CharField(label='Senha', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Digite sua senha', 'autocomplete': 'new-password', 'id': 'password1', 'type': 'password'}), help_text='• Sua senha não pode ser muito parecida com o seu nome de usuário.<br>• Sua senha precisa conter pelo menos 8 caracteres.<br>• Sua senha não pode ser uma senha comumente utilizada.<br>• Sua senha não pode ser inteiramente numérica.')
     password2 = forms.CharField(label='Confirme a senha', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirme sua senha', 'autocomplete': 'new-password', 'id': 'password2', 'type': 'password'}), help_text='• Digite novamente a senha para confirmação.')
 

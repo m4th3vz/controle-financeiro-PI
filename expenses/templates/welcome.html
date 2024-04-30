@@ -147,6 +147,7 @@
         <li><a class="dropdown-item" href="{% url 'welcome' %}">Bem-vindo</a></li>
         <li><a class="dropdown-item" href="{% url 'expense_list' %}">Suas despesas</a></li>
         <li><a class="dropdown-item" href="{% url 'calc_list' %}">Calculadoras</a></li>
+        <li><a class="dropdown-item" href="{% url 'news' %}">Notícias</a></li>
         <li><a class="dropdown-item" href="{% url 'about' %}">Sobre</a></li>
         <li>
           <li><hr class="dropdown-divider"></li>
@@ -178,7 +179,7 @@
       <div class="col-md-6 mb-3">
         <a href="{% url 'expense_list' %}" class="card mx-auto" style="text-decoration: none;">
           <div class="card-body text-center">
-              <!-- Imagem da Calculadora Financeira -->
+              <!-- Imagem de Planejamento Financeiro -->
               <img src="{% static 'img/dinheiro.png'%}" alt="Planejamento financeiro" class="card-img-top" style="width: 60%;">
               <h5 style="font-size: 20px;" class="card-title"><strong>Suas despesas</strong></h5>
               <h6 style="font-size: 15px;" class="card-text">Alcance seus objetivos financeiros com planejamento</h6>
@@ -188,7 +189,7 @@
       <div class="col-md-6 mb-3">
         <a href="{% url 'calc_list' %}" class="card mx-auto" style="text-decoration: none;">
           <div class="card-body text-center">
-              <!-- Imagem de Planejamento Financeiro -->
+              <!-- Imagem de Calculadora Financeira -->
               <img src="{% static 'img/img-calc.png'%}" alt="Calculadora financeira" class="card-img-top" style="width: 50%;">
               <h5 style="font-size: 20px;" class="card-title"><strong>Calculadora financeira</strong></h5>
               <h6 style="font-size: 15px;" class="card-text">Calcule suas prestações, empréstimos e aplicações</h6>
@@ -196,28 +197,29 @@
       </a>
       </div>
   </div>
-  <div class="row justify-content-center">
-      <div class="col-md-6 mb-3">
-          <div class="card mx-auto">
-              <div class="card-body text-center">
-                <!-- Imagem de Orçamentos -->
-                <img src="{% static 'img/luz.png'%}" alt="Orçamentos" class="card-img-top" style="width: 60%;">
-                  <h5 style="font-size: 17px;" class="card-title"><strong>Orçamentos</strong></h5>
-                  <p style="font-size: 15px;" class="card-text">Acompanhe seus ganhos e gastos</p>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-6 mb-3">
-          <div class="card mx-auto">
-              <div class="card-body text-center">
-                <!-- Imagem de Investimentos -->
-                <img src="{% static 'img/grafico.png'%}" alt="Investimentos" class="card-img-top" style="width: 50%;">
-                  <h5 style="font-size: 17px;" class="card-title"><strong>Investimentos</strong></h5>
-                  <p style="font-size: 15px;" class="card-text">Maximize os retornos com investimentos inteligentes</p>
-              </div>
-          </div>
-      </div>
-  </div>
+  <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+          <a href="{% url 'news' %}" class="card mx-auto" style="text-decoration: none;">
+            <div class="card-body text-center">
+                <!-- Imagem de Notícias -->
+                <img src="{% static 'img/grafico.png'%}" alt="Notícias" class="card-img-top" style="width: 50%;">
+                  <h5 style="font-size: 17px;" class="card-title"><strong>Notícias</strong></h5>
+                  <p style="font-size: 15px;" class="card-text">Fique atualizado com notícias de investimentos e negócios</p>
+            </div>
+        </a>
+        </div>
+        <div class="col-md-6 mb-3">
+          <a href="{% url 'about' %}" class="card mx-auto" style="text-decoration: none;">
+            <div class="card-body text-center">
+                <!-- Imagem de Sobre -->
+                <img src="{% static 'img/luz.png'%}" alt="Sobre" class="card-img-top" style="width: 60%;">
+                  <h5 style="font-size: 17px;" class="card-title"><strong>Sobre</strong></h5>
+                  <p style="font-size: 15px;" class="card-text">Entenda um pouco sobre este projeto</p>
+            </div>
+        </a>
+        </div>
+    </div>
 </div>
 
 <!-- Divisor horizontal -->

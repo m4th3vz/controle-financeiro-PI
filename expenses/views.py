@@ -171,6 +171,11 @@ def about(request):
 def calc_list(request):
     return render(request, 'calc_list.html')
 
+# Página de notícias
+@login_required
+def news(request):
+    return render(request, 'news.html')
+
 #--------------------------------------#
 # Função para Calcular Empréstimo
 def calculadora_de_emprestimo(principal, taxa_juros, periodo):
