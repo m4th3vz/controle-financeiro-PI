@@ -292,3 +292,14 @@ def calc_installment(request):
     else:
         form = InstallmentCalculatorForm()
     return render(request, 'calc_installment.html', {'form': form})
+
+#--------------------------------------#
+# Página de notícia 1
+@login_required
+def news1(request):
+    return render(request, 'news/news1.html')
+
+# Página de notícia 2
+@login_required
+def news2(request):
+    return render(request, 'news/news2.html')

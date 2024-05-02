@@ -45,4 +45,8 @@ urlpatterns = [
     path('expenses/<int:year>/<int:month>/', expense_list, name='expense_list_month'),
     # URL para a página de notícias
     path('news/', views.news, name='news'),
+    # URL para a página de notícia 1
+    path('news1/', views.news1, name='news1'),
+    # URL para a página de notícia 2
+    path('news2/', views.news2, name='news2'),
 ]

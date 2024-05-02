@@ -93,45 +93,49 @@
     <p id="cor-letra-banner">Fique atualizado com notícias de investimentos e negócios</p>
 </div>
 
+    <!-- Seção "Notícias" -->
+    <style>
+        /* Estilo para a classe 'titulo' */
+        .titulo {
+          color: var(--fundo-banner);
+          font-size: 18px;
+        }
+      </style>
+
+<!-- Logo -->
+<div style="display: flex; flex-direction: column; align-items: center; margin-top: 3%;">
+    <img style="max-width: 100%;" src="{% static 'img/noticia2.jpg' %}" alt="logo">
+</div>
+
+<!-- Texto aqui -->
 <div class="container mt-5">
-    <div class="row">
-      <!-- Card de Notícia 1 -->
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="{% static 'img/noticia.jpg' %}" alt="Notícia 1">
-          <div class="card-body">
-            <h4 class="card-title">Orçamento pessoal</h4>
-            <p class="card-text">Leia sobre orçamento pessoal!</p>
-          </div>
-          <div class="card-footer">
-            <a href="{% url 'news1' %}" class="btn btn-primary">Leia Mais</a>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Card de Notícia 2 -->
-      <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="{% static 'img/noticia2.jpg' %}" alt="Notícia 2">
-          <div class="card-body">
-            <h4 class="card-title">Canal do YouTube</h4>
-            <p class="card-text">Acompanhe nossos vídeos no YouTube!</p>
-          </div>
-          <div class="card-footer">
-            <a href="{% url 'news2' %}" class="btn btn-primary">Leia Mais</a>
-          </div>
-        </div>
-      </div>
-  
-      <!-- Adicione mais cards conforme necessário -->
-  
+    <h2 class="text-center" style="color: black; margin-top:5%; margin-bottom:2%; font-size: 35px;"><span style="background-color: #d9d2e9;">Educação financeira e o Bolso Controlado</span></h2>
+</div>
+
+<style>
+    @media only screen and (min-width: 820px) {
+        .desktop-video iframe {
+            width: 800px; /* Ajuste o tamanho conforme necessário */
+            height: 450px; /* Ajuste o tamanho conforme necessário */
+        }
+    }
+</style>
+
+<div class="text-center">
+    <div class="embed-responsive embed-responsive-16by9 desktop-video">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zDzI2gtCGuM" allowfullscreen></iframe>
     </div>
-  </div>
-  
-  <!-- Adicionando Bootstrap JS (opcional, dependendo do seu uso) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center" style="color: black; margin-top:5%; margin-bottom:2%; font-size: 35px;"><span style="background-color: #d9d2e9;">Alimentação sustentável e o Bolso Controlado</span></h2>
+</div>
+
+<div class="text-center">
+    <div class="embed-responsive embed-responsive-16by9 desktop-video">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/y6vzBkHnuWc" allowfullscreen></iframe>
+    </div>
+</div>
 
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <ul class="nav col-md-4 justify-content-center">
