@@ -258,10 +258,10 @@ def calc_investment(request):
     if request.method == 'POST':
         form = InvestmentCalculatorForm(request.POST)
         if form.is_valid():
-            valor_inicial = form.cleaned_data['valor_inicial']
+            principal = form.cleaned_data['principal']
             taxa_juros = form.cleaned_data['taxa_juros']
             periodo = form.cleaned_data['periodo']
-            montante = calculadora_investimento(valor_inicial, taxa_juros, periodo)
+            montante = calculadora_investimento(principal, taxa_juros, periodo)
             return render(request, 'calc_investment.html', {'form': form, 'montante': montante})
     else:
         form = InvestmentCalculatorForm()
@@ -284,7 +284,7 @@ def calc_installment(request):
     if request.method == 'POST':
         form = InstallmentCalculatorForm(request.POST)
         if form.is_valid():
-            montante = form.cleaned_data['montante']
+            montante = form.cleaned_data['principal']  # Renomeie 'montante' para 'principal'
             taxa_juros = form.cleaned_data['taxa_juros']
             periodo = form.cleaned_data['periodo']
             prestacao = calculadora_prestacoes(montante, taxa_juros, periodo)
