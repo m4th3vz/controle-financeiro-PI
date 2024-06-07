@@ -157,12 +157,10 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 # Página de boas-vindas
-@login_required
 def welcome(request):
     return render(request, 'welcome.html')
 
 # Página de sobre
-@login_required
 def about(request):
     return render(request, 'about.html')
 

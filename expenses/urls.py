@@ -2,13 +2,14 @@ from django.urls import path
 from . import views
 from .views import CustomLoginView
 from django.contrib.auth import views as auth_views
-from .views import expense_list
 
 # Este arquivo organiza a estrutura de URL do aplicativo.
 
 urlpatterns = [
+    # URL para página de boas-vindas
+    path('', views.welcome, name='welcome'),
     # URL para listar as despesas
-    path('', views.expense_list, name='expense_list'),
+    path('expenses/', views.expense_list, name='expense_list'),
     # URL para adicionar uma nova despesa
     path('add/', views.add_expense, name='add_expense'),
     # URL para confirmar a exclusão de todas as despesas
@@ -42,7 +43,7 @@ urlpatterns = [
     # URL para a página sobre
     path('about/', views.about, name='about'),
     # URL dinâmica
-    path('expenses/<int:year>/<int:month>/', expense_list, name='expense_list_month'),
+    path('expenses/<int:year>/<int:month>/', views.expense_list, name='expense_list_month'),
     # URL para a página de notícias
     path('news/', views.news, name='news'),
     # URL para a página de notícia 1
