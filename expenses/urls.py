@@ -1,13 +1,8 @@
+# expenses/urls.py
 from django.urls import path
 from . import views
-from .views import CustomLoginView
-from django.contrib.auth import views as auth_views
-
-# Este arquivo organiza a estrutura de URL do aplicativo.
 
 urlpatterns = [
-    # URL para página de boas-vindas
-    path('', views.welcome, name='welcome'),
     # URL para listar as despesas
     path('expenses/', views.expense_list, name='expense_list'),
     # URL para adicionar uma nova despesa
@@ -18,36 +13,6 @@ urlpatterns = [
     path('delete/all/', views.delete_all_expenses, name='delete_all_expenses'),
     # URL para excluir uma despesa específica
     path('<int:expense_id>/delete/', views.delete_expense, name='delete_expense'),
-    # URL para a calculadora
-    path('calculator/', views.calculator, name='calculator'),
-    # URL para login personalizado
-    path('login/', CustomLoginView.as_view(), name='login'),
-    # URL para registro de usuário
-    path('register/', views.register, name='register'),
-    # URL para logout padrão do Django
-    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
-    # URL para página de boas-vindas
-    path('welcome/', views.welcome, name='welcome'),
-    # URL para página da calculadora de empréstimo
-    path('loan-calculator/', views.calc_loan, name='calc_loan'),
-    # URL para página da calculadora juros simples
-    path('simple-interest-calculator/', views.calc_simple_interest, name='calc_simple_interest'),
-    # URL para página da calculadora juros compostos
-    path('compound-interest-calculator/', views.calc_compound_interest, name='calc_compound_interest'),
-    # URL para página da calculadora de investimentos
-    path('investment-calculator/', views.calc_investment, name='calc_investment'),
-    # URL para página da calculadora de prestações
-    path('installment-calculator/', views.calc_installment, name='calc_installment'),
-    # URL para a lista de calculadoras
-    path('calculator_list/', views.calc_list, name='calc_list'),
-    # URL para a página sobre
-    path('about/', views.about, name='about'),
     # URL dinâmica
     path('expenses/<int:year>/<int:month>/', views.expense_list, name='expense_list_month'),
-    # URL para a página de notícias
-    path('news/', views.news, name='news'),
-    # URL para a página de notícia 1
-    path('news1/', views.news1, name='news1'),
-    # URL para a página de notícia 2
-    path('news2/', views.news2, name='news2'),
 ]

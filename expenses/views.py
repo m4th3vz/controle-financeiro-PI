@@ -1,18 +1,12 @@
+# expenses/views.py
 from .models import Expense, UserProfile
-from .forms import ExpenseForm, UserRegistrationForm, LoanCalculatorForm, SimpleInterestCalculatorForm, CompoundInterestCalculatorForm, InvestmentCalculatorForm, InstallmentCalculatorForm
+from .forms import ExpenseForm
 from decimal import Decimal, InvalidOperation
 import datetime
-from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Sum
-from django.contrib import messages
-from django.contrib.auth.views import LoginView
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-
 from datetime import datetime, timedelta
-
-# As views podem realizar uma variedade de tarefas, como recuperar dados do banco de dados, validar dados de entrada do usuário, realizar cálculos e renderizar templates.
 
 # Lista de despesas
 @login_required
@@ -101,7 +95,7 @@ def add_expense(request):
             return redirect('expense_list')
     else:
         form = ExpenseForm()
-    return render(request, 'add_expense.html', {'form': form})
+    return render(request, 'expenses/add_expense.html', {'form': form})
 
 # Excluir despesa
 @login_required
@@ -126,178 +120,3 @@ def delete_all_expenses(request):
 @login_required
 def confirm_delete_expenses(request):
     return render(request, 'expenses/confirm_delete.html')
-
-# Página da calculadora
-@login_required
-def calculator(request):
-    return render(request, 'calculator.html')
-
-# Personalização da página de login
-class CustomLoginView(LoginView):
-    template_name = 'login.html'
-    authentication_form = AuthenticationForm
-
-    def get_success_url(self):
-        return reverse_lazy('welcome')
-    
-# Página de registro de usuário
-def register(request):
-    if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-        else:
-            # Adiciona mensagens de erro ao contexto
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, f"{field}: {error}")
-    else:
-        form = UserRegistrationForm()
-    return render(request, 'register.html', {'form': form})
-
-# Página de boas-vindas
-def welcome(request):
-    return render(request, 'welcome.html')
-
-# Página de sobre
-def about(request):
-    return render(request, 'about.html')
-
-# Página da lista de calculadoras
-@login_required
-def calc_list(request):
-    return render(request, 'calc_list.html')
-
-# Página de notícias
-@login_required
-def news(request):
-    return render(request, 'news.html')
-
-#--------------------------------------#
-# Função para Calcular Empréstimo
-def calculadora_de_emprestimo(principal, taxa_juros, periodo):
-    taxa_juros_mensal = taxa_juros / 100 / 12
-    num_pagamentos = periodo * 12
-
-    # Calcular o pagamento mensal de empréstimos
-    pagamento_mensal = (principal * taxa_juros_mensal) / (1 - (1 + taxa_juros_mensal) ** -num_pagamentos)
-
-    return round(pagamento_mensal, 2)
-
-# Esta view é uma aplicação Django e coordena a interação do usuário com a interface web
-@login_required
-def calc_loan(request):
-    if request.method == 'POST':
-        form = LoanCalculatorForm(request.POST)
-        if form.is_valid():
-            principal = form.cleaned_data['principal']
-            taxa_juros = form.cleaned_data['taxa_juros']
-            periodo = form.cleaned_data['periodo']
-            pagamento_mensal = calculadora_de_emprestimo(principal, taxa_juros, periodo)
-            return render(request, 'calc_loan.html', {'form': form, 'pagamento_mensal': pagamento_mensal})
-    else:
-        form = LoanCalculatorForm()
-    return render(request, 'calc_loan.html', {'form': form})
-
-#--------------------------------------#
-# Função para Calcular Juros Simples
-def juros_simples(principal, taxa_juros, periodo):
-    juros = principal * (taxa_juros / 100) * periodo
-    montante = principal + juros
-    return round(montante, 2)
-
-# View para a calculadora de juros simples
-@login_required
-def calc_simple_interest(request):
-    if request.method == 'POST':
-        form = SimpleInterestCalculatorForm(request.POST)
-        if form.is_valid():
-            principal = form.cleaned_data['principal']
-            taxa_juros = form.cleaned_data['taxa_juros']
-            periodo = form.cleaned_data['periodo']
-            montante = juros_simples(principal, taxa_juros, periodo)
-            return render(request, 'calc_simple_interest.html', {'form': form, 'montante': montante})
-    else:
-        form = SimpleInterestCalculatorForm()
-    return render(request, 'calc_simple_interest.html', {'form': form})
-
-#--------------------------------------#
-# Função para Calcular Juros Compostos
-def juros_compostos(principal, taxa_juros, periodo):
-    montante = principal * (1 + taxa_juros / 100) ** periodo
-    juros = montante - principal
-    return round(montante, 2)
-
-# View para a calculadora de juros compostos
-@login_required
-def calc_compound_interest(request):
-    if request.method == 'POST':
-        form = CompoundInterestCalculatorForm(request.POST)
-        if form.is_valid():
-            principal = form.cleaned_data['principal']
-            taxa_juros = form.cleaned_data['taxa_juros']
-            periodo = form.cleaned_data['periodo']
-            montante = juros_compostos(principal, taxa_juros, periodo)
-            return render(request, 'calc_compound_interest.html', {'form': form, 'montante': montante})
-    else:
-        form = CompoundInterestCalculatorForm()
-    return render(request, 'calc_compound_interest.html', {'form': form})
-
-#--------------------------------------#
-# Função para Calcular Investimentos
-def calculadora_investimento(valor_inicial, taxa_juros, periodo):
-    montante = valor_inicial * (1 + taxa_juros / 100) ** periodo
-    return round(montante, 2)
-
-# View para a calculadora de investimento
-@login_required
-def calc_investment(request):
-    if request.method == 'POST':
-        form = InvestmentCalculatorForm(request.POST)
-        if form.is_valid():
-            principal = form.cleaned_data['principal']
-            taxa_juros = form.cleaned_data['taxa_juros']
-            periodo = form.cleaned_data['periodo']
-            montante = calculadora_investimento(principal, taxa_juros, periodo)
-            return render(request, 'calc_investment.html', {'form': form, 'montante': montante})
-    else:
-        form = InvestmentCalculatorForm()
-    return render(request, 'calc_investment.html', {'form': form})
-
-#--------------------------------------#
-# Função para Calcular Prestações
-def calculadora_prestacoes(montante, taxa_juros, periodo):
-    taxa_juros_mensal = taxa_juros / 100 / 12
-    num_pagamentos = periodo * 12
-
-    # Calcular o valor da prestação usando a fórmula de amortização de empréstimos
-    prestacao = (montante * taxa_juros_mensal) / (1 - (1 + taxa_juros_mensal) ** -num_pagamentos)
-
-    return round(prestacao, 2)
-
-# View para a calculadora de prestações
-@login_required
-def calc_installment(request):
-    if request.method == 'POST':
-        form = InstallmentCalculatorForm(request.POST)
-        if form.is_valid():
-            montante = form.cleaned_data['principal']  # Renomeie 'montante' para 'principal'
-            taxa_juros = form.cleaned_data['taxa_juros']
-            periodo = form.cleaned_data['periodo']
-            prestacao = calculadora_prestacoes(montante, taxa_juros, periodo)
-            return render(request, 'calc_installment.html', {'form': form, 'prestacao': prestacao})
-    else:
-        form = InstallmentCalculatorForm()
-    return render(request, 'calc_installment.html', {'form': form})
-
-#--------------------------------------#
-# Página de notícia 1
-@login_required
-def news1(request):
-    return render(request, 'news/news1.html')
-
-# Página de notícia 2
-@login_required
-def news2(request):
-    return render(request, 'news/news2.html')
