@@ -1,10 +1,11 @@
 # login/views.py
-from .forms import UserRegistrationForm
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm
+from django.views import View
+from .forms import UserRegistrationForm
 
 # Personalização da página de login
 class CustomLoginView(LoginView):
@@ -13,11 +14,18 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('welcome')
-    
-# Página de registro de usuário
-def register(request):
-    if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
+
+# Página de registro de usuário baseada em classe
+class RegisterView(View):
+    form_class = UserRegistrationForm
+    template_name = 'login/register.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
             return redirect('login')
@@ -26,6 +34,4 @@ def register(request):
             for field, errors in form.errors.items():
                 for error in errors:
                     messages.error(request, f"{field}: {error}")
-    else:
-        form = UserRegistrationForm()
-    return render(request, 'login/register.html', {'form': form})
+        return render(request, self.template_name, {'form': form})

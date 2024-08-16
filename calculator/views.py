@@ -1,14 +1,27 @@
 # calculator/views.py
-from .forms import LoanCalculatorForm, SimpleInterestCalculatorForm, CompoundInterestCalculatorForm, InvestmentCalculatorForm, InstallmentCalculatorForm
 from django.shortcuts import render
+from django.views import View
+from .forms import (
+    LoanCalculatorForm, 
+    SimpleInterestCalculatorForm, 
+    CompoundInterestCalculatorForm, 
+    InvestmentCalculatorForm, 
+    InstallmentCalculatorForm
+)
 
 # Página da calculadora
-def calculator(request):
-    return render(request, 'calculator/calculator.html')
+class CalculatorView(View):
+    template_name = 'calculator/calculator.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
 
 # Página da lista de calculadoras
-def calc_list(request):
-    return render(request, 'calculator/calc_list.html')
+class CalculatorListView(View):
+    template_name = 'calculator/calc_list.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
 
 #--------------------------------------#
 # Função para Calcular Empréstimo
@@ -21,19 +34,24 @@ def calculadora_de_emprestimo(principal, taxa_juros, periodo):
 
     return round(pagamento_mensal, 2)
 
-# Esta view é uma aplicação Django e coordena a interação do usuário com a interface web
-def calc_loan(request):
-    if request.method == 'POST':
-        form = LoanCalculatorForm(request.POST)
+# View para a calculadora de empréstimo
+class LoanCalculatorView(View):
+    template_name = 'calculator/calc_loan.html'
+    form_class = LoanCalculatorForm
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
         if form.is_valid():
             principal = form.cleaned_data['principal']
             taxa_juros = form.cleaned_data['taxa_juros']
             periodo = form.cleaned_data['periodo']
             pagamento_mensal = calculadora_de_emprestimo(principal, taxa_juros, periodo)
-            return render(request, 'calculator/calc_loan.html', {'form': form, 'pagamento_mensal': pagamento_mensal})
-    else:
-        form = LoanCalculatorForm()
-    return render(request, 'calculator/calc_loan.html', {'form': form})
+            return render(request, self.template_name, {'form': form, 'pagamento_mensal': pagamento_mensal})
+        return render(request, self.template_name, {'form': form})
 
 #--------------------------------------#
 # Função para Calcular Juros Simples
@@ -43,18 +61,23 @@ def juros_simples(principal, taxa_juros, periodo):
     return round(montante, 2)
 
 # View para a calculadora de juros simples
-def calc_simple_interest(request):
-    if request.method == 'POST':
-        form = SimpleInterestCalculatorForm(request.POST)
+class SimpleInterestCalculatorView(View):
+    template_name = 'calculator/calc_simple_interest.html'
+    form_class = SimpleInterestCalculatorForm
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
         if form.is_valid():
             principal = form.cleaned_data['principal']
             taxa_juros = form.cleaned_data['taxa_juros']
             periodo = form.cleaned_data['periodo']
             montante = juros_simples(principal, taxa_juros, periodo)
-            return render(request, 'calculator/calc_simple_interest.html', {'form': form, 'montante': montante})
-    else:
-        form = SimpleInterestCalculatorForm()
-    return render(request, 'calculator/calc_simple_interest.html', {'form': form})
+            return render(request, self.template_name, {'form': form, 'montante': montante})
+        return render(request, self.template_name, {'form': form})
 
 #--------------------------------------#
 # Função para Calcular Juros Compostos
@@ -64,18 +87,23 @@ def juros_compostos(principal, taxa_juros, periodo):
     return round(montante, 2)
 
 # View para a calculadora de juros compostos
-def calc_compound_interest(request):
-    if request.method == 'POST':
-        form = CompoundInterestCalculatorForm(request.POST)
+class CompoundInterestCalculatorView(View):
+    template_name = 'calculator/calc_compound_interest.html'
+    form_class = CompoundInterestCalculatorForm
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
         if form.is_valid():
             principal = form.cleaned_data['principal']
             taxa_juros = form.cleaned_data['taxa_juros']
             periodo = form.cleaned_data['periodo']
             montante = juros_compostos(principal, taxa_juros, periodo)
-            return render(request, 'calculator/calc_compound_interest.html', {'form': form, 'montante': montante})
-    else:
-        form = CompoundInterestCalculatorForm()
-    return render(request, 'calculator/calc_compound_interest.html', {'form': form})
+            return render(request, self.template_name, {'form': form, 'montante': montante})
+        return render(request, self.template_name, {'form': form})
 
 #--------------------------------------#
 # Função para Calcular Investimentos
@@ -84,18 +112,23 @@ def calculadora_investimento(valor_inicial, taxa_juros, periodo):
     return round(montante, 2)
 
 # View para a calculadora de investimento
-def calc_investment(request):
-    if request.method == 'POST':
-        form = InvestmentCalculatorForm(request.POST)
+class InvestmentCalculatorView(View):
+    template_name = 'calculator/calc_investment.html'
+    form_class = InvestmentCalculatorForm
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
         if form.is_valid():
             principal = form.cleaned_data['principal']
             taxa_juros = form.cleaned_data['taxa_juros']
             periodo = form.cleaned_data['periodo']
             montante = calculadora_investimento(principal, taxa_juros, periodo)
-            return render(request, 'calculator/calc_investment.html', {'form': form, 'montante': montante})
-    else:
-        form = InvestmentCalculatorForm()
-    return render(request, 'calculator/calc_investment.html', {'form': form})
+            return render(request, self.template_name, {'form': form, 'montante': montante})
+        return render(request, self.template_name, {'form': form})
 
 #--------------------------------------#
 # Função para Calcular Prestações
@@ -109,15 +142,20 @@ def calculadora_prestacoes(montante, taxa_juros, periodo):
     return round(prestacao, 2)
 
 # View para a calculadora de prestações
-def calc_installment(request):
-    if request.method == 'POST':
-        form = InstallmentCalculatorForm(request.POST)
+class InstallmentCalculatorView(View):
+    template_name = 'calculator/calc_installment.html'
+    form_class = InstallmentCalculatorForm
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
         if form.is_valid():
-            montante = form.cleaned_data['principal']  # Renomeie 'montante' para 'principal'
+            montante = form.cleaned_data['principal']
             taxa_juros = form.cleaned_data['taxa_juros']
             periodo = form.cleaned_data['periodo']
             prestacao = calculadora_prestacoes(montante, taxa_juros, periodo)
-            return render(request, 'calculator/calc_installment.html', {'form': form, 'prestacao': prestacao})
-    else:
-        form = InstallmentCalculatorForm()
-    return render(request, 'calculator/calc_installment.html', {'form': form})
+            return render(request, self.template_name, {'form': form, 'prestacao': prestacao})
+        return render(request, self.template_name, {'form': form})

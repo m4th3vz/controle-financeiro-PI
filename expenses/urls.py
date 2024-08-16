@@ -1,18 +1,18 @@
 # expenses/urls.py
 from django.urls import path
-from . import views
+from .views import ExpenseListView, AddExpenseView, DeleteExpenseView, DeleteAllExpensesView, ConfirmDeleteExpensesView
 
 urlpatterns = [
     # URL para listar as despesas
-    path('expenses/', views.expense_list, name='expense_list'),
+    path('expenses/', ExpenseListView.as_view(), name='expense_list'),
+    # URL para listar despesas por ano e mês
+    path('expenses/<int:year>/<int:month>/', ExpenseListView.as_view(), name='expense_list_month'),
     # URL para adicionar uma nova despesa
-    path('add/', views.add_expense, name='add_expense'),
+    path('add/', AddExpenseView.as_view(), name='add_expense'),
     # URL para confirmar a exclusão de todas as despesas
-    path('delete/', views.confirm_delete_expenses, name='confirm_delete_expenses'),
+    path('delete/', ConfirmDeleteExpensesView.as_view(), name='confirm_delete_expenses'),
     # URL para excluir todas as despesas
-    path('delete/all/', views.delete_all_expenses, name='delete_all_expenses'),
+    path('delete/all/', DeleteAllExpensesView.as_view(), name='delete_all_expenses'),
     # URL para excluir uma despesa específica
-    path('<int:expense_id>/delete/', views.delete_expense, name='delete_expense'),
-    # URL dinâmica
-    path('expenses/<int:year>/<int:month>/', views.expense_list, name='expense_list_month'),
+    path('<int:expense_id>/delete/', DeleteExpenseView.as_view(), name='delete_expense'),
 ]
