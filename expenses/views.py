@@ -128,3 +128,8 @@ class DeleteAllExpensesView(LoginRequiredMixin, View):
 class ConfirmDeleteExpensesView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         return render(request, 'expenses/confirm_delete.html')
+
+    def post(self, request, *args, **kwargs):
+        # Exclui todas as despesas do usuário logado
+        Expense.objects.filter(user=request.user).delete()
+        return redirect('expense_list')

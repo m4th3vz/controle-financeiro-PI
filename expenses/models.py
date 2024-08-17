@@ -42,7 +42,7 @@ class Expense(models.Model):
     title = models.CharField(max_length=30, verbose_name='Título')
     amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Valor')
     date = models.DateField(verbose_name='Data')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='expenses')  # Adicione related_name
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='expenses')
     payment_method = models.CharField(blank=True, max_length=20, choices=PAYMENT_CHOICES, verbose_name='Forma de Pagamento (Opcional)', default='Dinheiro')
     observation = models.TextField(blank=True, verbose_name='Observação', max_length=60)
     duration_months = models.IntegerField(verbose_name='Duração em Meses', default=1)

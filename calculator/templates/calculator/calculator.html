@@ -1,18 +1,13 @@
-{% load static %} <!-- Carrega arquivos estáticos -->
+<!-- calculator/calculator.html -->
+{% extends 'base-3.html' %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Importação do Bootstrap 5 via CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Link para o arquivo de estilos personalizado -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/calc.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/calculator.css' %}">
-    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-    <title>Calculadora Básica</title>
+{% load static %}
 
+{% block page_title %}
+    Calculadora Básica
+{% endblock page_title %}
+
+{% block content %}
 <style>
     :root {
         --obs: red;
@@ -123,43 +118,6 @@ table {
     }    
 </script>
 
-</head>
-<body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <!-- Logo do site -->
-        <div style="display: flex; align-items: center;">
-            <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
-            <div id="logo-letras" class="display-6" style="margin-left: 10px;"><strong>Bolso Controlado</strong></div>
-        </div>
-        <!-- Botão dropdown com links de navegação -->
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" style="color: black; background-color: #FFCA2C; border-color: #FFCA2C;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Menu de Navegação
-        </button>
-        <ul class="dropdown-menu" style="text-align: center;">
-            <li><a class="dropdown-item" href="{% url 'welcome' %}">Bem-vindo</a></li>
-            <li><li><hr class="dropdown-divider"></li><a class="dropdown-item" href="{% url 'expense_list' %}">Suas despesas</a></li>
-            <li><li><hr class="dropdown-divider"></li><a class="dropdown-item" href="{% url 'calc_list' %}">Calculadoras</a></li>
-            <li><li><hr class="dropdown-divider"></li><a class="dropdown-item" href="{% url 'news' %}">Notícias</a></li>
-            <li><li><hr class="dropdown-divider"></li><a class="dropdown-item" href="{% url 'about' %}">Sobre</a></li>
-            <li>
-            <li><hr class="dropdown-divider"></li>
-            <form action="{% url 'logout' %}" method="post">
-              {% csrf_token %}
-              <button type="submit" class="dropdown-item">Logout</button>
-            </form>
-          </li>
-          <li><hr class="dropdown-divider"></li>
-          <li class="nav-item" style="list-style-type: none; text-align: center;">
-            <span style="color: #626463; font-size: 18px;" class="nav-link">{{ user.username }}</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  </nav>
-
 <!-- Token CSRF para proteção contra ataques CSRF -->
 {% csrf_token %}
 <!-- Banner -->
@@ -201,20 +159,4 @@ table {
             </tr>
         </table>
     </div>
-
-<!-- Rodapé -->
-<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top" style="margin-top: 300px;">
-    <ul class="nav col-md-4 justify-content-center">
-        <!-- Links de navegação adicionais -->
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Início</a></li>
-        <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-muted">Sobre</a></li>
-    </ul>
-    <!-- Informações de direitos autorais -->
-    <p class="col-md-4 mb-0 text-muted">© 2024 Projeto Integrador Univesp</p>
-</footer>
-<!-- Botão dropdown -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% endblock content %}

@@ -1,7 +1,7 @@
 # Bolso controlado
 ![Bolso controlado img](https://github.com/m4th3vz/bolso-controlado-PI/assets/109554163/03f21d9c-10fb-4052-84de-26c9bad71770)
 
-Univesp - Projeto Integrador em Computação I
+Univesp - Projeto Integrador em Computação I e II
 
 * Software de finanças focado para pessoas de baixa renda
 

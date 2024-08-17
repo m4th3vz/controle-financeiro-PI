@@ -1,0 +1,48 @@
+:root {
+    --obs: red;
+    --letras-nav-bar-preto: #000000;
+    --fundo-banner: #7E57C2;
+    --letras-banner: #ffffff;
+    --letras-nav-bar-azul: #3E92CC;
+    --cor-input: #cfcfcfcf;
+}
+
+#logo-letras {
+    color: var(--letras-nav-bar-azul);
+}
+
+#logo-img {
+    width: 5rem;
+    height: 5rem;
+}
+
+#menu-link-color {
+    color: var(--letras-nav-bar-preto);
+}
+
+/* Remover margens e padding do corpo */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Esconde a barra de rolagem horizontal */
+  }
+  
+  /* Styles for banner */
+  #banner {
+    background-color: var(--fundo-banner);
+    padding: 5rem;
+    text-align: center;
+  
+    /* Estender o banner até os cantos da tela */
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  #cor-letra-banner {
+    color: var(--letras-banner);
+  }
+
+#centralizar {
+    text-align: center;
+}

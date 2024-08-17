@@ -1,0 +1,35 @@
+:root {
+    --obs: red;
+    --letras-nav-bar-preto: #000000;
+    --fundo-banner: #7E57C2;
+    --letras-banner: #ffffff;
+    --letras-nav-bar-azul: #3E92CC;
+    --cor-input: #cfcfcfcf;
+}
+
+#logo-letras {
+    color: var(--letras-nav-bar-azul);
+}
+
+#logo-img {
+    width: 5rem;
+    height: 5rem;
+}
+
+#menu-link-color {
+    color: var(--letras-nav-bar-preto);
+}
+
+#banner {
+    background-color: var(--fundo-banner);
+    padding: 5rem;
+    text-align: center;
+}
+
+#cor-letra-banner {
+    color: var(--letras-banner);
+}
+
+#centralizar {
+    text-align: center;
+}

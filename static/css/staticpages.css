@@ -1,0 +1,148 @@
+/* Root variables */
+:root {
+    --obs: red;
+    --letras-nav-bar-preto: #000000;
+    --fundo-banner: #7E57C2;
+    --letras-banner: #ffffff;
+    --letras-nav-bar-azul: #3E92CC;
+    --cor-input: #cfcfcfcf;
+  }
+  
+  /* Styles for menu */
+  #logo-letras {
+    color: var(--letras-nav-bar-azul);
+  }
+  
+  #logo-img {
+    width: 5rem;
+    height: 5rem;
+  }
+  
+  #menu-link-color {
+    color: var(--letras-nav-bar-preto);
+  }
+  
+  /* Remover margens e padding do corpo */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Esconde a barra de rolagem horizontal */
+}
+
+/* Styles for banner */
+#banner {
+  background-color: var(--fundo-banner);
+  padding: 5rem;
+  text-align: center;
+
+  /* Estender o banner até os cantos da tela */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+  #cor-letra-banner {
+    color: var(--letras-banner);
+  }
+  
+  /* Styles for cards */
+  .card {
+    width: 60%;
+    border-radius: 10px;
+    background-color: #fff;
+    margin-top: 5%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-img-top {
+    width: 120px;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-right: 0%;
+  }
+  
+  h2 {
+    color: #333;
+    font-size: 24px;
+  }
+  
+  p {
+    color: #666;
+    font-size: 16px;
+  }
+  
+  .card-text {
+    font-size: 10px;
+    color: #666;
+  }
+  
+  .card-title {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .card-body {
+    margin-top: 10px;
+  }
+  
+  .col-md-4 {
+    margin: 0 15px;
+  }
+  
+  .col-md-6 {
+    display: grid;
+  }
+  
+  .card-img {
+    width: 20%;
+    height: 20%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .card-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    text-align: center;
+    color: #333;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Horizontal divider */
+  .divisor-horizontal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: black;
+  }
+
+/* -------------------------------news.html------------------------------- */
+
+/* Estilo específico para os cards personalizados */
+.card-custom .card {
+  width: 100%; /* Altera a largura apenas para estes cards */
+  margin-top: 2%; /* Ajusta a margem conforme necessário */
+  /* Outros ajustes específicos que você precisar */
+}
+
+.card-custom .card-img-top {
+  width: 100%; /* Ajusta a imagem para ocupar toda a largura do card */
+}
+
+.card-custom .card-title {
+  font-size: 16px; /* Ajusta o tamanho da fonte */
+}
+
+.card-custom .card-text {
+  font-size: 14px; /* Ajusta o tamanho da fonte do texto */
+}
+
+/* -------------------------------news.html------------------------------- */

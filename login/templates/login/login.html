@@ -1,59 +1,13 @@
-{% load static %} <!-- Carrega arquivos estáticos -->
+<!-- login/login.html -->
+{% extends 'base-2.html' %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Define a escala inicial para dispositivos móveis -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"> <!-- Link para o Bootstrap CSS -->
-    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-    <title>Login</title>
-<style>
-    /* Define a cor de fundo do corpo da página */
-body {
-    background-color: #7E57C2;
-}
+{% load static %}
 
-/* Define o espaçamento superior do container */
-.container {
-    padding-top: 50px;
-}
+{% block page_title %}
+    Login
+{% endblock page_title %}
 
-/* Estilização dos cartões com bordas arredondadas e sombra */
-.card {
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilo do corpo do cartão */
-.card-body {
-    padding: 30px;
-}
-
-/* Estilização do formulário */
-form {
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-/* Estilização dos campos de entrada de texto */
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-/* Estilo dos parágrafos */
-p {
-    text-align: center;
-    margin-top: 20px;
-}
-
-</style>
-
+{% block content %}
 <script>
     function togglePasswordVisibility() {
         var passwordInput = document.getElementById("password");
@@ -64,9 +18,8 @@ p {
         }
     }
 </script>
-</head>
 
-<body>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -117,5 +70,4 @@ p {
             </div>
         </div>
     </div>
-</body>
-</html>
+{% endblock content %}
