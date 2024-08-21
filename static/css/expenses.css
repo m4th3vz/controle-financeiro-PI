@@ -46,3 +46,9 @@ body, html {
 #centralizar {
     text-align: center;
 }
+
+/* Estilos para os campos de adicionar despesa */
+.form-control-custom {
+  background-color: #cfcfcf;
+  text-align: center;
+}

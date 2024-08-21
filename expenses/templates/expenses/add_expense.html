@@ -14,13 +14,78 @@
        <p id="cor-letra-banner">Adicione sua despesa aqui.</p>
     </div>  
   <br>
-<div class="text-center">
+  <div class="text-center">
     <!-- Título -->
     <h1>Adicionar Despesa</h1>
     <!-- Formulário de adição de despesa -->
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        
+        <!-- Categoria -->
+        <div class="mb-3">
+          <label for="id_expense_category" class="form-label">Categoria</label>
+          <select name="expense_category" class="form-select form-control-custom" id="id_expense_category">
+              {% for choice in form.expense_category.field.choices %}
+                  <option value="{{ choice.0 }}" {% if choice.0 == form.expense_category.value %}selected{% endif %}>
+                      {{ choice.1 }}
+                  </option>
+              {% endfor %}
+          </select>
+        </div>
+
+        <!-- Título -->
+        <div class="mb-3">
+          <label for="id_title" class="form-label">Título</label>
+          <input type="text" name="title" class="form-control form-control-custom" id="id_title" value="{{ form.title.value }}">
+        </div>
+
+        <!-- Valor -->
+        <div class="mb-3">
+          <label for="id_amount" class="form-label">Valor</label>
+          <input type="number" name="amount" class="form-control form-control-custom" id="id_amount" step="0.01" value="{{ form.amount.value }}">
+        </div>
+
+        <!-- Data -->
+        <div class="mb-3">
+          <label for="id_date" class="form-label">Data</label>
+          <input type="date" name="date" class="form-control form-control-custom" id="id_date" value="{{ form.date.value }}">
+        </div>
+
+        <script>
+          // Script para definir a data atual como padrão se o campo estiver vazio
+          window.onload = function() {
+              var dateInput = document.getElementById('id_date');
+              if (!dateInput.value) {
+                  var today = new Date().toISOString().split('T')[0];
+                  dateInput.value = today;
+              }
+          };
+        </script>
+
+        <!-- Forma de Pagamento -->
+        <div class="mb-3">
+          <label for="id_payment_method" class="form-label">Forma de Pagamento (Opcional)</label>
+          <select name="payment_method" class="form-select form-control-custom" id="id_payment_method">
+              {% for choice in form.payment_method.field.choices %}
+                  <option value="{{ choice.0 }}" {% if choice.0 == form.payment_method.value %}selected{% endif %}>
+                      {{ choice.1 }}
+                  </option>
+              {% endfor %}
+          </select>
+        </div>
+
+        <!-- Duração em Meses -->
+        <div class="mb-3">
+          <label for="id_duration_months" class="form-label">Deseja adicionar esta despesa por quantos meses?</label>
+          <input type="number" name="duration_months" class="form-control form-control-custom" id="id_duration_months" min="1" max="48" value="{{ form.duration_months.value }}">
+        </div>
+
+        <!-- Observação -->
+        <div class="mb-3">
+            <label for="id_observation" class="form-label">Informações adicionais sobre este gasto (Opcional):</label>
+            {{ form.observation }}
+        </div>
+
         <!-- Botão de adicionar despesa -->
         <button class="btn btn-warning" type="submit">Adicionar</button>
     </form>

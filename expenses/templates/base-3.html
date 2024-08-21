@@ -1,4 +1,4 @@
-<!-- templates/base.html -->
+<!-- expenses/templates/base.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -31,6 +31,7 @@
         <ul class="dropdown-menu" style="text-align: center;">
           <li><a class="dropdown-item" href="{% url 'welcome' %}">Bem-vindo</a></li>
             <li><li><hr class="dropdown-divider"></li><a class="dropdown-item" href="{% url 'expense_list' %}">Suas despesas</a></li>
+            <li><li><hr class="dropdown-divider"></li><a class="dropdown-item" href="{% url 'add_expense' %}">Adicionar despesa</a></li>
             <li><li><hr class="dropdown-divider"></li><a class="dropdown-item" href="{% url 'calc_list' %}">Calculadoras</a></li>
             <li><li><hr class="dropdown-divider"></li><a class="dropdown-item" href="{% url 'news' %}">Notícias</a></li>
             <li><li><hr class="dropdown-divider"></li><a class="dropdown-item" href="{% url 'about' %}">Sobre</a></li>
