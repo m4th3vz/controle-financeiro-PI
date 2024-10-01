@@ -9,7 +9,7 @@
 
 {% block content %}
 <!-- Banner -->
-<div id ="banner">
+<div id="banner">
   <h1 style="font-size: 55px; margin-bottom: -10px;" id="cor-letra-banner"><strong>Bem-vindo ao nosso site</strong></h1>
   <p style="font-size: 55px;" id="cor-letra-banner"><strong>de finanças pessoais</strong></p>
   <p style="font-size: 23px;" id="cor-letra-banner">Pequenas economias, grandes mudanças: seu futuro financeiro começa agora.</p>
@@ -87,6 +87,148 @@
 
 <!-- Logo -->
 <div style="display: flex; flex-direction: column; align-items: center;">
-<img width="350px" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
+  <img width="350px" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
 </div>
+
+<!-- Botão para abrir o modal da calculadora -->
+<div class="fixed-button">
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#calculatorModal">
+    <i class="fas fa-calculator"></i> <!-- Usando Font Awesome para o ícone -->
+  </button>
+</div>
+
+<style>
+  .fixed-button {
+    position: fixed;
+    bottom: 20px; /* Ajuste a distância do fundo conforme necessário */
+    left: 20px;   /* Ajuste a distância da borda esquerda conforme necessário */
+    z-index: 9999; /* Garante que o botão fique sobre outros elementos */
+  }
+  
+  .fixed-button .btn {
+    border-radius: 50%; /* Torna o botão circular */
+    width: 50px;  /* Ajuste o tamanho conforme necessário */
+    height: 50px; /* Ajuste o tamanho conforme necessário */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .fixed-button .btn i {
+    font-size: 24px; /* Ajuste o tamanho do ícone conforme necessário */
+    color: white;
+  }
+  
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- Modal da Calculadora -->
+<div class="modal fade" id="calculatorModal" tabindex="-1" aria-labelledby="calculatorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="calculatorModalLabel">💸Calculadora de Calculo Simples💰</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+          <script type="text/javascript">
+
+	var Accum = 0;
+	var FlagNewNum = false;
+	var PendingOp = "";	
+
+	//Abaixo estamos adcionando os valores de cada botão ao parametro Num
+	function NumPressed(Num) {
+		if (FlagNewNum) {
+			document.frm_calc.txt_01.value  = Num;
+			FlagNewNum = false;
+   		}
+		else {
+			if (document.frm_calc.txt_01.value == "0")
+				document.frm_calc.txt_01.value = Num;
+			else
+				document.frm_calc.txt_01.value += Num;
+   		}
+	}
+
+	//Valores de exibição quando apertado o botão igual
+	function Operation(Op) {
+		if (document.frm_calc.txt_01.value == ""){
+			alert("O Campo esta vázio digite um valor");
+			document.frm_calc.txt_01.value ="0"; }
+		else{
+			if (FlagNewNum && PendingOp != "=");
+			else	{
+				FlagNewNum = true;
+				if ( '+' == PendingOp )
+					Accum += parseFloat(document.frm_calc.txt_01.value);
+					else if ( '-' == PendingOp )
+					Accum -= parseFloat(document.frm_calc.txt_01.value);
+					else if ( '/' == PendingOp )
+					Accum /= parseFloat(document.frm_calc.txt_01.value);
+					else if ( '*' == PendingOp )
+					Accum *= parseFloat(document.frm_calc.txt_01.value);
+				else
+					Accum = parseFloat(document.frm_calc.txt_01.value);
+					document.frm_calc.txt_01.value = Accum;
+					PendingOp = Op;
+			}
+   		}
+	}
+
+	//Atribuindo o ponto( . ) aos valores numéricos
+	function Ponto() {
+		var curtxt_01 = document.frm_calc.txt_01.value;
+		if (FlagNewNum) {
+			curtxt_01 = "0.";
+			FlagNewNum = false;
+   		}
+		else {
+		if (curtxt_01.indexOf(".") == -1)
+			curtxt_01 += ".";
+   		}
+		document.frm_calc.txt_01.value = curtxt_01;
+	}
+</script>
+<form  name="frm_calc" acton>
+<center>
+<table class="rounded-1 border border-4" width="200" cellpadding="3" cellspacing="5" style="color:#ffffff; background-color:#87cefa; border:2pt solid#ffffff">
+	<tr class="rounded-1 border border-4">
+	<td colspan="5"align="Center" bgColor="#50abe4"><Font Face="Verdana" Size="4" Color="#ffffff"><b>Calculadora</b></font></td>
+	</tr>
+	<tr>
+	<td colspan="3" align="center" border:2pt solid#FFB90F><input type="text" name="txt_01" value="" style="color:#ffffff; background-color:#CFCFCF;border:2pt solid#ffffff"></td>
+	<td><center><input type="reset" value="AC" onclick="" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	<td><center><input type="button" value="=" name="btn_igual" onclick="Operation('=')" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	</tr>
+	<tr>
+	<td><center><input type="button" value="7" name="btn_7" onclick="NumPressed(7)" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	<td><center><input type="button" value="8" name="btn_8" onclick="NumPressed(8)" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	<td><center><input type="button" value="9" name="btn_9" onclick="NumPressed(9)" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	<td><center><input type="button" value="+" name="btn_soma" onclick="Operation('+')" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	<td><center><input type="button" value="-" name="btn_subt" onclick="Operation('-')" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	</tr>
+	<tr>
+	<td><center><input type="button" value="4" name="btn_4" onclick="NumPressed(4)" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	<td><center><input type="button" value="5" name="btn_5" onclick="NumPressed(5)" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	<td><center><input type="button" value="6" name="btn_6" onclick="NumPressed(6)" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	<td><center><input type="button" value="*" name="btn_mult" onclick="Operation('*')" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	<td><center><input type="button" value="/" name="btn_divi" onclick="Operation('/')" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	</tr>
+	<tr>
+	<td><center><input type="button" value="1" name="btn_1" onclick="NumPressed(1)" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	<td><center><input type="button" value="2" name="btn_2" onclick="NumPressed(2)" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	<td><center><input type="button" value="3" name="btn_3" onclick="NumPressed(3)" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	<td><center><input type="button" value="0" name="btn_0" onclick="NumPressed(0)" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	<td><center><input type="button" value="." name="btn_pont" onclick="Ponto()" style="color:#ffffff; background-color:#87cefa; cursor:hand; padding:9px; border:0"></center></td>
+	</tr>
+</table>
+</form></center>
+          </div>
+        </div>
+      </div>
+    </div>
+
 {% endblock content %}
