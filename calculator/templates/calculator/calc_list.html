@@ -1,5 +1,5 @@
 <!-- calculator/calc_list.html -->
-{% extends 'base-3.html' %}
+{% extends 'base-4.html' %}
 
 {% load static %}
 
@@ -10,42 +10,140 @@
 {% block content %}
 <!-- Token CSRF para proteção contra ataques CSRF -->
 {% csrf_token %}
+  <!-- Optional Custom CSS -->
+  <style>
+    /* Custom styles */
+    .nav-tabs .nav-link {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .tab-content h2 {
+      margin-top: 20px;
+      color: #333333; /* Dark gray color for h2 */
+    }
+
+    .btn-warning, .btn-outline-warning {
+      background-color: #ffc107;
+      border-color: #ffc107;
+    }
+
+    .btn-outline-warning svg {
+      fill: #5f6368; /* Icon color */
+    }
+  </style>
+
 <!-- Banner -->
 <div id="banner">
     <h1 id="cor-letra-banner">Calculadora Financeira</h1>
     <p id="cor-letra-banner">Cálculo de juros simples, compostos, empréstimo, investimentos e prestações</p>
 </div>
 <br>
+
 <!-- Título -->
 <h2 id="centralizar">Escolha uma calculadora:</h2>
 <br><br>
-<!-- Link para a calculadora -->
-<div class="d-grid gap-1 col-4 mx-auto">
-    <button onclick="window.location.href='{% url 'calculator' %}'" class="btn btn-warning">Calculadora Básica</button>
+
+<!-- Tabs for Pagination -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic" type="button" role="tab" aria-controls="basic" aria-selected="true">Básica</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="simple-interest-tab" data-bs-toggle="tab" data-bs-target="#simple-interest" type="button" role="tab" aria-controls="simple-interest" aria-selected="false">Juros Simples</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="compound-interest-tab" data-bs-toggle="tab" data-bs-target="#compound-interest" type="button" role="tab" aria-controls="compound-interest" aria-selected="false">Juros Compostos</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="loan-tab" data-bs-toggle="tab" data-bs-target="#loan" type="button" role="tab" aria-controls="loan" aria-selected="false">Empréstimo</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="investment-tab" data-bs-toggle="tab" data-bs-target="#investment" type="button" role="tab" aria-controls="investment" aria-selected="false">Investimentos</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="installment-tab" data-bs-toggle="tab" data-bs-target="#installment" type="button" role="tab" aria-controls="installment" aria-selected="false">Prestações</button>
+  </li>
+</ul>
+
+<!-- Tab Content for Each Calculator -->
+<div class="tab-content" id="myTabContent">
+  <!-- Basic Calculator -->
+  <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
+    <h2>Calculadora Básica</h2>
+    <div class="d-grid gap-1 col-2 mx-auto">
+      <button onclick="window.location.href='{% url 'calculator' %}'" class="btn btn-outline-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+          <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+    <!-- Simple Interest Calculator -->
+  <div class="tab-pane fade" id="simple-interest" role="tabpanel" aria-labelledby="simple-interest-tab">
+    <h2>Calculadora de Juros Simples</h2>
+    <div class="d-grid gap-1 col-2 mx-auto">
+      <button onclick="window.location.href='{% url 'calc_simple_interest' %}'" class="btn btn-outline-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+          <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Compound Interest Calculator -->
+  <div class="tab-pane fade" id="compound-interest" role="tabpanel" aria-labelledby="compound-interest-tab">
+    <h2>Calculadora de Juros Compostos</h2>
+    <div class="d-grid gap-1 col-2 mx-auto">
+      <button onclick="window.location.href='{% url 'calc_compound_interest' %}'" class="btn btn-outline-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+          <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <br>
+
+  <!-- Loan Calculator -->
+  <div class="tab-pane fade" id="loan" role="tabpanel" aria-labelledby="loan-tab">
+    <h2>Calculadora de Empréstimo</h2>
+    <br>
+    <div class="d-grid gap-1 col-2 mx-auto">
+      <button onclick="window.location.href='{% url 'calc_loan' %}'" class="btn btn-outline-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+          <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Investment Calculator -->
+  <div class="tab-pane fade" id="investment" role="tabpanel" aria-labelledby="investment-tab">
+    <h2>Calculadora de Investimentos</h2>
+    
+    <div class="d-grid gap-1 col-2 mx-auto">
+      <button onclick="window.location.href='{% url 'calc_investment' %}'"  class="btn btn-outline-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+          <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
+    </div>
+  </div>
+
+  <!-- Installment Calculator -->
+  <div class="tab-pane fade" id="installment" role="tabpanel" aria-labelledby="installment-tab">
+    <h2>Calculadora de Prestações</h2>
+    
+    <div class="d-grid gap-1 col-2 mx-auto">
+      <button onclick="window.location.href='{% url 'calc_installment' %}'" class="btn btn-outline-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+          <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
 </div>
-<br>
-<!-- Link para a calculadora de juros simples -->
-<div class="d-grid gap-1 col-4 mx-auto">
-    <button onclick="window.location.href='{% url 'calc_simple_interest' %}'" class="btn btn-warning">Calculadora de Juros Simples</button>
-</div>
-<br>
-<!-- Link para a calculadora de juros compostos -->
-<div class="d-grid gap-1 col-4 mx-auto">
-    <button onclick="window.location.href='{% url 'calc_compound_interest' %}'" class="btn btn-warning">Calculadora de Juros Compostos</button>
-</div>
-<br>
-<!-- Link para a calculadora de empréstimo -->
-<div class="d-grid gap-1 col-4 mx-auto">
-    <button onclick="window.location.href='{% url 'calc_loan' %}'" class="btn btn-warning">Calculadora de Empréstimo</button>
-</div>
-<br>
-<!-- Link para a calculadora de investimentos -->
-<div class="d-grid gap-1 col-4 mx-auto">
-    <button onclick="window.location.href='{% url 'calc_investment' %}'" class="btn btn-warning">Calculadora de Investimentos</button>
-</div>
-<br>
-<!-- Link para a calculadora de prestações -->
-<div class="d-grid gap-1 col-4 mx-auto">
-    <button onclick="window.location.href='{% url 'calc_installment' %}'" class="btn btn-warning">Calculadora de Prestações</button>
-</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBY5gIhF5zJb1m7b5N3vVV1B9QQY5YFzE1FjCPTl57nD/u8" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-VoPF75zK6lw72w5AlY8kZGfFFmcF4lUqJXW+XFJ5rAuGqgSWEfGQD+WHvY5yK4qa" crossorigin="anonymous"></script>
+
 {% endblock content %}

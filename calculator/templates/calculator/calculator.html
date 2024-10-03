@@ -9,44 +9,7 @@
 
 {% block content %}
 <style>
-    :root {
-        --obs: red;
-        --letras-nav-bar-preto: #000000;
-        --fundo-banner: #7E57C2;
-        --letras-banner: #ffffff;
-        --letras-nav-bar-azul: #3E92CC;
-        --cor-input: #cfcfcfcf;
-    }
-    
-    #logo-letras {
-        color: var(--letras-nav-bar-azul);
-    }
-    
-    #logo-img {
-        width: 5rem;
-        height: 5rem;
-    }
-    
-    #menu-link-color {
-        color: var(--letras-nav-bar-preto);
-    }
-    
-    #banner {
-        background-color: var(--fundo-banner);
-        padding: 5rem;
-        padding-bottom: 5rem;
-        text-align: center;
-    }
-    
-    #cor-letra-banner {
-        color: var(--letras-banner);
-    }
-    
-    #centralizar {
-        text-align: center;
-    }
-    
-    /* Container para posicionar elementos relativos */
+/* Container para posicionar elementos relativos */
 .container {
     position: relative;
 }
@@ -60,11 +23,12 @@
     font-size: 24px;
     font-family: Arial, sans-serif; /* Fonte do texto */
     text-align: center; /* Alinhamento do texto */
-    background-color: #AECAE7; /* Cor de fundo do visor */
-    border: 1px solid #74a3c9; /* Borda do visor */
+    background-color: #9B72D0; /* Cor de fundo do visor aproximada para roxo */
+    border: 1px solid #7E57C2; /* Borda do visor aproximada para roxo */
     border-radius: 5px; /* Borda arredondada */
     box-sizing: border-box; /* Garante que a altura do visor não adicionará espaço extra */
     padding: 5px; /* Espaçamento interno do visor */
+    color: #FFFFFF; /* Cor dos números dentro do visor alterada para branco */
 }
 
 /* Estilizando a tabela da calculadora */
@@ -80,16 +44,17 @@ table {
     font-size: 24px; /* Tamanho da fonte dos botões */
     font-family: Arial, sans-serif; /* Fonte do texto */
     margin: 5px; /* Espaçamento entre os botões */
-    background-color: #AECAE7; /* Cor de fundo dos botões */
-    border: 1px solid #74a3c9; /* Borda dos botões */
+    background-color: #9B72D0; /* Cor de fundo dos botões aproximada para roxo */
+    border: 1px solid #7E57C2; /* Borda dos botões aproximada para roxo */
     border-radius: 5px; /* Borda arredondada dos botões */
     cursor: pointer; /* Cursor do mouse ao passar sobre os botões */
+    color: #FFFFFF; /* Cor dos números (texto) alterada para branco */
     transition: background-color 0.3s ease; /* Transição suave da cor de fundo dos botões */
 }
 
 /* Efeito de hover nos botões */
 .botao:hover {
-    background-color: #74a3c9; /* Cor de fundo dos botões ao passar o mouse */
+    background-color: #7E57C2; /* Cor de fundo dos botões ao passar o mouse aproximada para roxo */
 }
 </style>
 
