@@ -1,4 +1,4 @@
-<!-- calculator/templates/base.html -->
+<!-- calculator/templates/base-4.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,9 +19,13 @@
     <div class="container-fluid">
         <!-- Logo -->
         <div style="display: flex; align-items: center;">
-          <img id="logo-img" src="{% static 'img/bolso-controlado-img.png'%}" alt="logo">
-          <div id="logo-letras" class="display-6" style="margin-left: 10px;"><strong>Bolso Controlado</strong></div>
-      </div>
+          <a href="{% url 'welcome' %}">
+              <img id="logo-img" src="{% static 'img/bolso-controlado-img.png' %}" alt="logo">
+          </a>
+          <div id="logo-letras" class="display-6" style="margin-left: 10px;">
+              <strong>Bolso Controlado</strong>
+          </div>
+        </div>
   
       <!-- Botão dropdown com links de navegação -->
       <div class="dropdown">
