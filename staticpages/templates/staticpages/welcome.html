@@ -41,6 +41,16 @@
   </div>
   <div class="container mt-5">
     <div class="row">
+      <div class="col-md-6 mb-3">
+        <a href="{% url 'task_list' %}" class="card mx-auto" style="text-decoration: none;">
+            <div class="card-body text-center">
+                <!-- Imagem da lista de compras -->
+                <img src="{% static 'img/lista.png'%}" alt="Lista de Compras" class="card-img-top" style="width: 60%;">
+                <h5 style="font-size: 17px;" class="card-title"><strong>Lista de Compras</strong></h5>
+                <p style="font-size: 15px;" class="card-text">Gerencie sua lista de compras</p>
+            </div>
+        </a>
+    </div>
         <div class="col-md-6 mb-3">
           <a href="{% url 'news' %}" class="card mx-auto" style="text-decoration: none;">
             <div class="card-body text-center">
@@ -48,16 +58,6 @@
                 <img src="{% static 'img/grafico.png'%}" alt="Notícias" class="card-img-top" style="width: 50%;">
                   <h5 style="font-size: 17px;" class="card-title"><strong>Notícias</strong></h5>
                   <p style="font-size: 15px;" class="card-text">Fique atualizado com notícias de investimentos e negócios</p>
-            </div>
-        </a>
-        </div>
-        <div class="col-md-6 mb-3">
-          <a href="{% url 'about' %}" class="card mx-auto" style="text-decoration: none;">
-            <div class="card-body text-center">
-                <!-- Imagem de Sobre -->
-                <img src="{% static 'img/luz.png'%}" alt="Sobre" class="card-img-top" style="width: 60%;">
-                  <h5 style="font-size: 17px;" class="card-title"><strong>Sobre</strong></h5>
-                  <p style="font-size: 15px;" class="card-text">Entenda um pouco sobre este projeto</p>
             </div>
         </a>
         </div>

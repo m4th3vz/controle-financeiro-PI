@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'expenses.apps.ExpensesConfig',
     'calculator.apps.CalculatorConfig',
     'staticpages.apps.StaticpagesConfig',
+    'shopping_list.apps.ShoppingListConfig',
 ]
 
 MIDDLEWARE = [

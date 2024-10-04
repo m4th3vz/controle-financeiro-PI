@@ -1,0 +1,60 @@
+<!-- shopping_list/shopping_list.html -->
+{% extends 'base-5.html' %}
+
+{% load static %}
+
+{% block page_title %}
+    Lista de Compras
+{% endblock page_title %}
+
+{% block content %}
+<!-- Banner -->
+<div id="banner">
+    <h1 id="cor-letra-banner">Lista de Compras</h1>
+    <p id="cor-letra-banner">Crie sua lista de compras aqui!</p>
+</div>
+  
+<style>
+    .container {
+        display: flex; /* Ativa o modelo flexbox */
+        flex-direction: column; /* Coloca os itens em coluna */
+        justify-content: center; /* Centraliza verticalmente */
+        align-items: center; /* Centraliza horizontalmente */
+    }
+</style>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Lista de Compras de {{ user.username }}</h1>
+    
+    <div class="card p-4 shadow-sm">
+        <!-- Exibir Mensagens de Erro -->
+        {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <!-- Formulário para adicionar uma nova tarefa -->
+        <form action="{% url 'task_add' %}" method="post" class="d-flex mb-3">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Adicione um novo item" class="form-control me-2" required>
+            <button type="submit" class="btn btn-warning">Adicionar</button>
+        </form>
+
+        <!-- Lista de Tarefas -->
+        <ul class="list-group">
+            {% for task in tasks %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ task.title }}
+                <form action="{% url 'task_delete' task.pk %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                </form>
+            </li>
+            {% empty %}
+            <p class="text-center text-muted">Nenhuma tarefa encontrada.</p>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock content %}
