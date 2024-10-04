@@ -15,16 +15,16 @@
 </div>
   
 <style>
-    .container {
-        display: flex; /* Ativa o modelo flexbox */
-        flex-direction: column; /* Coloca os itens em coluna */
-        justify-content: center; /* Centraliza verticalmente */
-        align-items: center; /* Centraliza horizontalmente */
+    .card {
+        width: 100%; /* Card ocupa largura total */
+        max-width: 1000px; /* Opcional: Limitar a largura máxima */
+        padding: 20px; /* Ajuste o padding interno do card */
+        margin: 0 auto; /* Centraliza horizontalmente */
     }
 </style>
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Lista de Compras de {{ user.username }}</h1>
+    <h1 class="text-center mb-4">Lista de compras de {{ user.username }}</h1>
     
     <div class="card p-4 shadow-sm">
         <!-- Exibir Mensagens de Erro -->
@@ -35,11 +35,12 @@
         {% endfor %}
 
         <!-- Formulário para adicionar uma nova tarefa -->
-        <form action="{% url 'task_add' %}" method="post" class="d-flex mb-3">
+        <form action="{% url 'task_add' %}" method="post" class="d-flex justify-content-between mb-3">
             {% csrf_token %}
-            <input type="text" name="title" placeholder="Adicione um novo item" class="form-control me-2" required>
-            <button type="submit" class="btn btn-warning">Adicionar</button>
+            <input type="text" name="title" placeholder="Adicione aqui!" class="form-control" required>
+            <button type="submit" class="btn btn-warning ms-2">Adicionar</button>
         </form>
+
 
         <!-- Lista de Tarefas -->
         <ul class="list-group">
@@ -55,6 +56,14 @@
             <p class="text-center text-muted">Nenhuma tarefa encontrada.</p>
             {% endfor %}
         </ul>
+    </div>
+
+    <!-- Formulário para apagar todas as tarefas -->
+    <div class="text-center mb-3" style="margin-top:2%">
+        <form action="{% url 'task_delete_all' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Apagar todas as tarefas</button>
+        </form>
     </div>
 </div>
 {% endblock content %}

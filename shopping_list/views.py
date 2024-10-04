@@ -26,3 +26,9 @@ class TaskDeleteView(LoginRequiredMixin, View):
         if task:
             task.delete()
         return redirect('task_list')
+
+class TaskDeleteAllView(LoginRequiredMixin, View):
+    def post(self, request):
+        Task.objects.filter(user=request.user).delete()
+        messages.success(request, "Todas as suas tarefas foram apagadas.")
+        return redirect('task_list')
