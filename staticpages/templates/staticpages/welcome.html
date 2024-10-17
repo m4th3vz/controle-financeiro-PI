@@ -15,6 +15,70 @@
   <p style="font-size: 23px;" id="cor-letra-banner">Pequenas economias, grandes mudanças: seu futuro financeiro começa agora.</p>
 </div>
 
+<style>
+  .scroll-container {
+    width: 100%; /* A largura da área visível */
+    overflow: hidden; /* Esconde os elementos que saem da área visível */
+}
+
+.scrolling-text {
+    display: inline-block;
+    white-space: nowrap; /* Evita quebra de linha */
+    animation: scroll-left 30s linear infinite; /* Ajusta a velocidade da animação */
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0); /* Começa no início da tela */
+    }
+    100% {
+        transform: translateX(-100%); /* Sai completamente da tela */
+    }
+}
+
+.scroll-duplicator {
+    display: flex;
+}
+</style>
+
+<div class="container animate__animated animate__bounce animate__faster">
+  <h2 class="text-center" style="color: var(--fundo-banner); margin-top:2%; margin-bottom:2%; font-size: 45px;">Mercado financeiro</h2>
+
+  {% if error %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+  {% else %}
+    <div class="scroll-container">
+      <div class="scroll-duplicator">
+        <!-- Primeira cópia dos dados -->
+        <div class="scrolling-text">
+          <strong>Data:</strong> {{ from }} &nbsp;
+          <strong>Símbolo:</strong> {{ symbol }} &nbsp;
+          <strong>Abertura:</strong> {{ open }} &nbsp;
+          <strong>Máxima:</strong> {{ high }} &nbsp;
+          <strong>Mínima:</strong> {{ low }} &nbsp;
+          <strong>Fechamento:</strong> {{ close }} &nbsp;
+          <strong>Pós-Mercado:</strong> {{ after_hours }} &nbsp;
+          <strong>Pré-Mercado:</strong> {{ pre_market }}
+        </div>
+
+        <!-- Segunda cópia dos dados para continuidade -->
+        <div class="scrolling-text">
+          <strong>Data:</strong> {{ from }} &nbsp;
+          <strong>Símbolo:</strong> {{ symbol }} &nbsp;
+          <strong>Abertura:</strong> {{ open }} &nbsp;
+          <strong>Máxima:</strong> {{ high }} &nbsp;
+          <strong>Mínima:</strong> {{ low }} &nbsp;
+          <strong>Fechamento:</strong> {{ close }} &nbsp;
+          <strong>Pós-Mercado:</strong> {{ after_hours }} &nbsp;
+          <strong>Pré-Mercado:</strong> {{ pre_market }}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
 <!-- Cards de funcionalidades -->
 <div class="container mt-5">
   <div class="row">
@@ -46,7 +110,7 @@
             <div class="card-body text-center">
                 <!-- Imagem da lista de compras -->
                 <img src="{% static 'img/lista.png'%}" alt="Lista de Compras" class="card-img-top" style="width: 60%;">
-                <h5 style="font-size: 17px;" class="card-title"><strong>Lista de Compras</strong></h5>
+                <h5 style="font-size: 17px;" class="card-title"><strong>Lista de compras</strong></h5>
                 <p style="font-size: 15px;" class="card-text">Gerencie sua lista de compras</p>
             </div>
         </a>
@@ -69,7 +133,7 @@
 
 <!-- Seção "Sobre o Bolso Controlado" -->
 <div class="container mt-5">
-    <h1 class="text-center" style="color: var(--fundo-banner); margin-top:10%; margin-bottom:2%; font-size: 45px;">Sobre o Bolso Controlado</h1>
+    <h3 class="text-center" style="color: var(--fundo-banner); margin-top:10%; margin-bottom:2%; font-size: 45px;">Sobre o Bolso Controlado</h3>
     <p style= "margin-bottom:5%; font-size: 18px">
         <!-- Texto sobre o Bolso Controlado -->
         O Bolso Controlado é um site de finanças pessoais que nasceu de uma iniciativa universitária.
