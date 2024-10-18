@@ -13,7 +13,7 @@
     <h1 id="cor-letra-banner">Lista de Compras</h1>
     <p id="cor-letra-banner">Crie sua lista de compras aqui!</p>
 </div>
-  
+
 <style>
     .card {
         width: 100%; /* Card ocupa largura total */
@@ -23,6 +23,7 @@
     }
 </style>
 
+<!-- Conteúdo principal -->
 <div class="container mt-5">
     <h1 class="text-center mb-4">Lista de compras de {{ user.username }}</h1>
     
@@ -41,12 +42,11 @@
             <button type="submit" class="btn btn-warning ms-2">Adicionar</button>
         </form>
 
-
         <!-- Lista de Tarefas -->
-        <ul class="list-group">
+        <ul id="item-list" class="list-group">
             {% for task in tasks %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{ task.title }}
+                <span class="task-title">{{ task.title }}</span>
                 <form action="{% url 'task_delete' task.pk %}" method="post" style="display:inline;">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
@@ -65,5 +65,33 @@
             <button type="submit" class="btn btn-danger">Apagar toda a lista</button>
         </form>
     </div>
+
+    <!-- Botão para gerar PDF -->
+    <div class="text-center">
+        <button id="pdf-button" class="btn btn-warning ms-2">Gerar PDF</button>
+    </div>
 </div>
+
+<!-- Adicionando jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+    document.getElementById('pdf-button').addEventListener('click', function() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Título do PDF
+        doc.text("Lista de Compras de {{ user.username }}", 10, 10);
+
+        // Selecionar apenas o texto dos itens da lista
+        const items = document.querySelectorAll('#item-list .task-title');
+        items.forEach((item, index) => {
+            doc.text(`${index + 1}. ${item.textContent.trim()}`, 10, 20 + (index * 10));
+        });
+
+        // Salvar o arquivo PDF
+        doc.save("lista_de_compras_{{ user.username }}.pdf");
+    });
+</script>
+
 {% endblock content %}
