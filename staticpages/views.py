@@ -3,13 +3,14 @@ from django.views.generic import TemplateView
 from django.shortcuts import render
 import urllib.request
 import json
+from decouple import config
 
 # Página de boas-vindas e API de dados da bolsa
 class WelcomeView(TemplateView):
     template_name = 'staticpages/welcome.html'
     
     def get(self, request, *args, **kwargs):
-        api_key = ''
+        api_key = config('API_KEY')
         url = f'https://api.polygon.io/v1/open-close/I:NDX/2024-04-05?apiKey={api_key}'
 
         try:

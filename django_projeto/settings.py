@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-# o módulo 'os' é usado para definir caminhos relativos (modificado)
-import os
+import os # o módulo 'os' é usado para definir caminhos relativos (modificado)
+from decouple import config # O decouple é uma biblioteca que facilita a separação das configurações do código (modificado)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-k+0%r@dtsy8iz9z&02gzz($5$(7+3c)=+jwd*%$d%0+*)0ks3i'
+SECRET_KEY = config('SECRET_KEY') # (modificado)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool) # (modificado)
 
 ALLOWED_HOSTS = []
 
